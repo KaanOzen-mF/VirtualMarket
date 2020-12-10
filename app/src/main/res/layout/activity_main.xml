@@ -2,118 +2,94 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/torku_red"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/snaksTextView"
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/grid_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Snaks"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/waterAndOtherTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Water And Others"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/fruitVegatablesTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:text="Fruit and Vegatables"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/stapleFoodsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="244dp"
-        android:text="Staple Foods"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/homeView"
-        android:layout_width="100dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="556dp"
-        android:onClick="homePageOnClick"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/homepng" />
-
-    <ImageView
-        android:id="@+id/profileView"
-        android:layout_width="100dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="556dp"
-        android:onClick="profileOnClick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/homeView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profilepng" />
-
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="303dp"
-        android:layout_height="300dp"
+        app:columnCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.194">
 
         <ImageView
-            android:id="@+id/waterandotherView"
+            android:id="@+id/fruit_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            app:srcCompat="@drawable/fruitvegatables" />
+
+        <ImageView
+            android:id="@+id/beverages_image_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="false"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
             app:srcCompat="@drawable/water" />
 
         <ImageView
-            android:id="@+id/snacksView"
+            android:id="@+id/food_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            app:srcCompat="@drawable/snacks" />
-
-        <ImageView
-            android:id="@+id/stapleFoodView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_row="1"
-            android:layout_column="1"
+            android:layout_margin="10dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
             app:srcCompat="@drawable/mainfood" />
 
         <ImageView
-            android:id="@+id/vegatablesView"
+            android:id="@+id/snacks_image_view"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_row="1"
-            android:layout_column="0"
-            app:srcCompat="@drawable/fruitvegatables" />
+            android:layout_margin="10dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            app:srcCompat="@drawable/snacks" />
 
-    </GridLayout>
+    </androidx.gridlayout.widget.GridLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/home_bottom_image_view"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/home_icon" />
+
+        <ImageView
+            android:id="@+id/torku_bottom_logo_image_view"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/torku" />
+
+        <ImageView
+            android:id="@+id/user_bottom_logo_image_view"
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/user_icon" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

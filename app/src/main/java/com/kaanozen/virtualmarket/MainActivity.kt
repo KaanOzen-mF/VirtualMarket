@@ -1,24 +1,18 @@
 package com.kaanozen.virtualmarket
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Adapter
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    fun homePageOnClick(view : View){
 
     }
 
-    fun profileOnClick(view: View){
-        val intent = Intent(this,ProfilePageActivity::class.java)
-        startActivity(intent)
-
-    }
 }
