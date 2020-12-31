@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Virtual Market</string>
+    <string name="app_name">VirtualMarket</string>
+    <string name="err_msg_first_name">Please write a name</string>
+    <string name="err_msg_last_name">Please write a surname</string>
+    <string name="err_msg_email">Please write an email</string>
+    <string name="err_msg_password">Please write a password</string>
+    <string name="err_msg_confirm_password">Please write a confirm password</string>
+    <string name="err_msg_password_and_confirm_password_mismatch">Password and confirm password mismatch</string>
 </resources>

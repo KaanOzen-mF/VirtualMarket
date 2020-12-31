@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <ImageView
+        android:id="@+id/homeImageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="213dp"
+        android:layout_marginBottom="2dp"
+        android:onClick="homeOnClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/proflieImageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adressView"
+        app:srcCompat="@drawable/homeimage" />
+
+    <ImageView
+        android:id="@+id/proflieImageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="2dp"
+        android:onClick="profileOnClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/homeImageView2"
+        app:layout_constraintTop_toBottomOf="@+id/enterView"
+        app:srcCompat="@drawable/profileimage" />
+
+    <TextView
+        android:id="@+id/adressView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="255dp"
+        android:gravity="center|center_vertical"
+        android:text="Adreslerim"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/homeImageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterView" />
+
+    <TextView
+        android:id="@+id/enterView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="359dp"
+        android:gravity="center|center_vertical"
+        android:text="Giriş Yap"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/proflieImageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

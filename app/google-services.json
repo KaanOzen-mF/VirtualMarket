@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "445711556203",
+    "project_id": "virtualmarket-114a5",
+    "storage_bucket": "virtualmarket-114a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445711556203:android:5930192067268ac05ddb2e",
+        "android_client_info": {
+          "package_name": "com.kaanozen.virtualmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445711556203-p0fjhnjhk90suvu9algvm3nvnelq0j2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kaanozen.virtualmarket",
+            "certificate_hash": "9e3440cbad5b521fbaeab775c7c5a8946525edd2"
+          }
+        },
+        {
+          "client_id": "445711556203-um25u8gkt1h8bs4mo8npqgctjepshm4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzEGl4E365-P1_O1li2KLmr0xWC7QWvHE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445711556203-um25u8gkt1h8bs4mo8npqgctjepshm4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
