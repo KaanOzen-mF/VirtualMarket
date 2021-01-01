@@ -6,4 +6,7 @@
     <string name="err_msg_password">Please write a password</string>
     <string name="err_msg_confirm_password">Please write a confirm password</string>
     <string name="err_msg_password_and_confirm_password_mismatch">Password and confirm password mismatch</string>
+    <string name="register_success">Register Successful</string>
+    <string name="save">SAVE</string>
+    <string name="err_msg_enter_mobile_number">Invalid phone number</string>
 </resources>

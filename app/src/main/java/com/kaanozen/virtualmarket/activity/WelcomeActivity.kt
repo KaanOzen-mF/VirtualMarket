@@ -1,10 +1,10 @@
-package com.kaanozen.virtualmarket
+package com.kaanozen.virtualmarket.activity
 
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import com.kaanozen.virtualmarket.R
 
 class WelcomeActivity : AppCompatActivity() {
 

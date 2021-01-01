@@ -1,11 +1,14 @@
-package com.kaanozen.virtualmarket
+package com.kaanozen.virtualmarket.activity
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.kaanozen.virtualmarket.R
+import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -98,20 +101,32 @@ class RegisterActivity : BaseActivity() {
                                     // Firebase registered user
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                                    showErrorSnackBar(
-                                            "Welcome "+ firstNameTxt.text.toString() + "\nYou are registered successfully. Your user id is ${firebaseUser.uid}" ,
-                                            false
+                                    val user = com.kaanozen.virtualmarket.activity.model.User(
+                                        firebaseUser.uid,
+                                        firstNameTxt.text.toString().trim{ it <= ' '},
+                                        lastNameTxt.text.toString().trim { it <= ' ' },
+                                        emailTxt.text.toString().trim { it <= ' ' }
+
                                     )
 
+                                    //we store user register info to firestore database
+                                    FirestoreClass().registerUser(this@RegisterActivity, user)
                                     //with these lines we turn back login activity for login app
-                                    FirebaseAuth.getInstance().signOut()
-                                    finish()
+
+                                    //FirebaseAuth.getInstance().signOut()
+                                    //finish()
                                 } else {
                                     // If the registering is not successful then show error message.
                                     showErrorSnackBar(task.exception!!.message.toString(), true)
                                 }
                             })
         }
+    }
+
+    fun userRegistrationSuccess(){
+
+        Toast.makeText(this@RegisterActivity,resources.getString(R.string.register_success),Toast.LENGTH_LONG).show()
+
     }
 
 }

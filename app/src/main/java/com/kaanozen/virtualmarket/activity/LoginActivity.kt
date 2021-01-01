@@ -1,10 +1,15 @@
-package com.kaanozen.virtualmarket
+package com.kaanozen.virtualmarket.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+import com.kaanozen.virtualmarket.R
+import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
+import com.kaanozen.virtualmarket.activity.model.User
+import com.kaanozen.virtualmarket.activity.utilies.Constants
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_register.*
 
@@ -31,7 +36,7 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
 
                 R.id.registerBut_login ->{
                     // with this intent if we click login button we will open Login Activity
-                    val intent = Intent(this@LoginActivity,RegisterActivity::class.java)
+                    val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -69,10 +74,9 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
                 .addOnCompleteListener { task ->
 
                      if (task.isSuccessful) {
-                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                         startActivity(intent)
-                         finish()
-                        showErrorSnackBar("You are logged in successfully.", false)
+
+                         FirestoreClass().getUserDetails(this@LoginActivity)
+
                     } else {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
@@ -80,5 +84,21 @@ class LoginActivity : BaseActivity(),View.OnClickListener {
         }
     }
 
+    fun userLoggedInSuccess(user : User){
+
+        //Print the user details in the log as of now
+        Log.i("First Name: " , user.firstName)
+        Log.i("Last Name: ", user.lastName)
+        Log.i("Email: " , user.email)
+
+        // If the user profile is incomplete then launch the UserProfileActivity.
+        val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+        //Pass the user details to the user profile screen.
+
+        intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+
+        startActivity(intent)
+        finish()
+    }
 }
 

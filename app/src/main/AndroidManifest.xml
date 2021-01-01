@@ -10,29 +10,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualMarket">
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".activity.BaseActivity"></activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VirtualMarket.NoActionBar"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VirtualMarket.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VirtualMarket.NoActionBar">
-            <intevnt-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intevnt-filter>
+            </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".activity.UserProfileActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
     </application>
 
