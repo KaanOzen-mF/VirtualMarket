@@ -67,12 +67,15 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
 
             when(view.id){
                 R.id.home_bottom_image_view ->{
+                    BaseActivity.depth = 0
                     val intent = Intent(this,MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 R.id.user_bottom_logo_image_view ->{
                     val intent = Intent(this,UserProfileActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
