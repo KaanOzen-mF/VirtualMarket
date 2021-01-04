@@ -20,7 +20,7 @@ import com.kaanozen.virtualmarket.activity.recycle.ProductCategoryRecycleAdapter
 import com.kaanozen.virtualmarket.activity.utilies.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickListener {
+class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickListener,View.OnClickListener {
 
     private lateinit var categoryRecycleAdapter: ProductCategoryRecycleAdapter
 
@@ -43,6 +43,9 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
 
         categoryRecycleAdapter.submitItems(this.returnCategoryList())
         categoryRecycleAdapter.submitListener(this)
+
+        home_bottom_image_view.setOnClickListener(this)
+        user_bottom_logo_image_view.setOnClickListener(this)
     }
 
     override fun OnItemClick(position: Int, item : ProductCategory) {
@@ -56,6 +59,22 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
             BaseActivity.depth+=1
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onClick(view: View?) {
+        if( view != null){
+
+            when(view.id){
+                R.id.home_bottom_image_view ->{
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.user_bottom_logo_image_view ->{
+                    val intent = Intent(this,UserProfileActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
     }
 }
