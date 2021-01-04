@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kaanozen.virtualmarket">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualMarket">
-        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.ProductPageActivity" />
+        <activity android:name=".activity.BaseActivity" />
         <activity
             android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.VirtualMarket.NoActionBar"/>
+            android:theme="@style/Theme.VirtualMarket.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
@@ -29,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.UserProfileActivity" />
         <activity
             android:name=".activity.MainActivity"

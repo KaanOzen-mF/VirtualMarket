@@ -4,25 +4,31 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.activity.LoginActivity
 import com.kaanozen.virtualmarket.activity.RegisterActivity
-import com.kaanozen.virtualmarket.activity.UserProfileActivity
+import com.kaanozen.virtualmarket.activity.model.MarketItem
+import com.kaanozen.virtualmarket.activity.model.Product
+import com.kaanozen.virtualmarket.activity.model.ProductCategory
 import com.kaanozen.virtualmarket.activity.model.User
 import com.kaanozen.virtualmarket.activity.utilies.Constants
 
-
 //A custom class where we will add the operation performed for the FireStore database.
 
-class FirestoreClass {
+open class FirestoreClass {
 
     // Access a Cloud Firestore instance.
     private val mFireStore = FirebaseFirestore.getInstance()
 
-    //a function to access the Cloud Firestore and create a collection.
-
+    private val storage = Firebase.storage
 
      //A function to make an entry of the registered user in the FireStore database.
 
@@ -47,7 +53,6 @@ class FirestoreClass {
                 )
             }
     }
-
 
      // A function to get the user id of current logged user.
 
@@ -75,13 +80,10 @@ class FirestoreClass {
             .get()
             .addOnSuccessListener { document ->
 
-                Log.i(activity.javaClass.simpleName, document.toString())
-
                 // Here we have received the document snapshot which is converted into the User Data model object.
                 val user = document.toObject(User::class.java)!!
 
                 //Create an instance of the Android SharedPreferences.
-
                 val sharedPreferences =
                     activity.getSharedPreferences(
                         Constants.SHOP_PREFERENCES,
@@ -97,7 +99,6 @@ class FirestoreClass {
                 editor.apply()
 
                 //pass the result to the Login Activity.
-
                 when (activity) {
                     is LoginActivity -> {
                         // Call a function of base activity for transferring the result to it.
@@ -142,4 +143,66 @@ class FirestoreClass {
                 }
     }
 
+    fun getImageReference (item: MarketItem) : StorageReference {
+        var itemFolderRef = this.storage.reference
+
+        var id = ""
+
+        when (item) {
+            is Product -> {itemFolderRef = itemFolderRef.child("product")
+                id = item.id
+            }
+
+            is ProductCategory -> {itemFolderRef = itemFolderRef.child("category")
+                id = item.id
+            }
+        }
+
+        val itemRef = itemFolderRef.child((id +".jpg"))
+
+        return itemRef
+    }
+
+    fun addProduct(product: Product, context: Context) {
+        mFireStore.collection("products")
+                .add(product)
+                .addOnSuccessListener { documentReference ->
+
+                    product.id = documentReference.id
+
+                    mFireStore.collection("products")
+                            .document(documentReference.id)
+                            .set(product, SetOptions.merge())
+                            .addOnSuccessListener {
+                                Toast.makeText(context,"Product Added",Toast.LENGTH_SHORT).show()
+                            }
+                }
+    }
+
+    fun addCategory(category: ProductCategory, context: Context) {
+        mFireStore.collection("categories")
+            .add(category)
+            .addOnSuccessListener { documentReference ->
+
+                category.id = documentReference.id
+
+                mFireStore.collection("categories")
+                    .document(documentReference.id)
+                    .set(category, SetOptions.merge())
+                        .addOnSuccessListener {
+                            Toast.makeText(context,"Category Added",Toast.LENGTH_SHORT).show()
+                        }
+            }
+    }
+
+    fun getCategories(depth: Int, context: Context) : Task<QuerySnapshot> {
+
+        var queryRes = mFireStore.collection("categories")
+                .whereEqualTo("depth", depth)
+                .get()
+
+        while (!queryRes.isComplete && !queryRes.isCanceled);
+
+        return  queryRes
+    }
 }

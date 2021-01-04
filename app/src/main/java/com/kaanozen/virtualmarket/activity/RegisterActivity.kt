@@ -1,7 +1,8 @@
 package com.kaanozen.virtualmarket.activity
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
+import android.view.View
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -12,72 +13,58 @@ import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
-        loginBut_register.setOnClickListener {
-
-            onBackPressed()
-
-        // with this intent if we click login button we will open Login Activity
-            /*
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            startActivity(intent)
-             */
-        }
-
-        registerBut.setOnClickListener{
+        registerBut_register.setOnClickListener{
             registerUser()
         }
+    }
+
+    public fun loginBut_registerClick(view : View) {
+        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     /**
      * A function to validate the entries of a new user.
      */
     private fun validateRegisterDetails(): Boolean {
-        return when {
-            TextUtils.isEmpty(firstNameTxt.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_first_name), true)
-                false
-            }
 
-            TextUtils.isEmpty(lastNameTxt.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_last_name), true)
-                false
-            }
-
-            TextUtils.isEmpty(emailTxt.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_email), true)
-                false
-            }
-
-            TextUtils.isEmpty(passwordTxt.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_password), true)
-                false
-            }
-
-            TextUtils.isEmpty(confirmPasswordTxt.text.toString().trim { it <= ' ' }) -> {
-                showErrorSnackBar(
-                        resources.getString(R.string.err_msg_confirm_password),
-                        true
-                )
-                false
-            }
-
-            passwordTxt.text.toString().trim { it <= ' ' } != confirmPasswordTxt.text.toString()
-                    .trim { it <= ' ' } -> {
-                showErrorSnackBar(
-                        resources.getString(R.string.err_msg_password_and_confirm_password_mismatch),
-                        true
-                )
-                false
-            }
-            else -> {
-                true
-            }
+        if(firstNameTxt.text.isEmpty())
+        {
+            showErrorSnackBar(resources.getString(R.string.err_msg_first_name), true)
+            return false
         }
+
+        if(lastNameTxt.text.isEmpty())
+        {
+            showErrorSnackBar(resources.getString(R.string.err_msg_last_name), true)
+            return false
+        }
+
+        if(emailTxt.text.isEmpty())
+        {
+            showErrorSnackBar(resources.getString(R.string.err_msg_email), true)
+            return false
+        }
+
+        if(passwordTxt.text.isEmpty())
+        {
+            showErrorSnackBar(resources.getString(R.string.err_msg_password), true)
+            return false
+        }
+
+        if(confirmPasswordTxt.text.isEmpty())
+        {
+            showErrorSnackBar(resources.getString(R.string.err_msg_confirm_password),true)
+            return false
+        }
+
+        return true
     }
     /**
      * A function to register the user with email and password using FirebaseAuth.
@@ -111,10 +98,6 @@ class RegisterActivity : BaseActivity() {
 
                                     //we store user register info to firestore database
                                     FirestoreClass().registerUser(this@RegisterActivity, user)
-                                    //with these lines we turn back login activity for login app
-
-                                    //FirebaseAuth.getInstance().signOut()
-                                    //finish()
                                 } else {
                                     // If the registering is not successful then show error message.
                                     showErrorSnackBar(task.exception!!.message.toString(), true)

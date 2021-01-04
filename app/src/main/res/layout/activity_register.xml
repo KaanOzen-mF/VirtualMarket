@@ -86,7 +86,7 @@
                 android:textSize="20dp" />
 
             <Button
-                android:id="@+id/registerBut"
+                android:id="@+id/registerBut_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -115,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:backgroundTint="@color/green"
+                    android:onClick="loginBut_registerClick"
                     android:text="LOGIN"
                     android:textSize="20dp"
                     android:textStyle="bold" />
