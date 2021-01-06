@@ -41,6 +41,8 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
         editEmail.setText(userDetails.email)
 
         saveBut.setOnClickListener(this)
+        home_bottom_image_view.setOnClickListener(this)
+        user_bottom_logo_image_view.setOnClickListener(this)
 
     }
 
@@ -73,6 +75,14 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
                     }
                 }
 
+                R.id.home_bottom_image_view ->{
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.user_bottom_logo_image_view ->{
+                    val intent = Intent(this,UserProfileActivity::class.java)
+                    startActivity(intent)
+                }
             }
 
         }
