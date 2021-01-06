@@ -1,26 +1,18 @@
 package com.kaanozen.virtualmarket.activity.recycle
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.executor.GlideExecutor.UncaughtThrowableStrategy.LOG
-import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
-import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
-import com.kaanozen.virtualmarket.activity.model.MarketItem
 import com.kaanozen.virtualmarket.activity.model.ProductCategory
-import kotlinx.android.synthetic.main.activity_category_page.view.*
-import java.net.URL
-import kotlin.math.log
+import kotlinx.android.synthetic.main.activity_category_recycle_unit_view.*
+import kotlinx.android.synthetic.main.activity_category_recycle_unit_view.view.*
 
 class ProductCategoryRecycleAdapter() :  RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
@@ -28,7 +20,7 @@ class ProductCategoryRecycleAdapter() :  RecyclerView.Adapter<RecyclerView.ViewH
     private lateinit var listener : OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CatalogViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.activity_category_page, parent, false))
+        return CatalogViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.activity_category_recycle_unit_view, parent, false))
     }
 
     override fun getItemCount(): Int {

@@ -33,7 +33,30 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
         val sharedPreferences =
             getSharedPreferences(Constants.SHOP_PREFERENCES, Context.MODE_PRIVATE)
 
-        val username = sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "")!!
+        /*for (x in 0..7){
+
+            var cat = ProductCategory()
+
+            cat.name = "a"
+            cat.imageURL = "a"
+            cat.isLeaf = false
+            cat.depth = 0
+
+            FirestoreClass().addCategory(cat,this)
+        }
+
+        for (x in 0..13 )
+        {
+            var pro = Product()
+            pro.name = "a"
+            pro.imageURL = "a"
+            pro.parentID = "a"
+            pro.stock = 0
+            pro.price = 0.0
+            pro.information = "a"
+
+            FirestoreClass().addProduct(pro,this)
+        }*/
 
         recycleViewCategory.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -47,8 +70,9 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
 
     override fun OnItemClick(position: Int, item : ProductCategory) {
 
-        if(item.isLeaf && false){ TODO("THE FALSE NEEDS TO BE DELETED TO SHOW PRODUCT LIST OF THAT CATEGORY")
-            var intent = Intent(this,ProductPageActivity::class.java)
+        if(item.isLeaf){
+            var intent = Intent(this,ProductListsActivity::class.java)
+            intent.putExtra("categoryID", item.id)
             startActivity(intent)
         }
         else

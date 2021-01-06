@@ -10,11 +10,13 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
+import com.kaanozen.virtualmarket.activity.model.Product
 import com.kaanozen.virtualmarket.activity.model.ProductCategory
 
 open class BaseActivity : AppCompatActivity() {
 
     private var categories = ArrayList<ProductCategory>()
+    private var products = ArrayList<Product>()
 
     companion object {
         var depth : Int = 0
@@ -45,6 +47,8 @@ open class BaseActivity : AppCompatActivity() {
 
     fun returnCategoryList(): ArrayList<ProductCategory> {
 
+        categories.clear()
+
         var queryRes = FirestoreClass().getCategories(depth,this)
 
         for (x in queryRes.result!!.documents)
@@ -53,12 +57,33 @@ open class BaseActivity : AppCompatActivity() {
         return this.categories
     }
 
+    fun returnProductList(categoryID : String ): ArrayList<Product> {
+
+        products.clear()
+
+        var queryRes = FirestoreClass().getProducts(categoryID,this)
+
+        for (x in queryRes.result!!.documents)
+            products.add(x.toObject(Product::class.java)!!)
+
+        return this.products
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
 
-        if(depth >= 1)
-            depth--
+        when(this){
 
-        Toast.makeText(this, depth.toString(), Toast.LENGTH_SHORT).show()
+            is MainActivity -> {
+                if(depth >= 1)
+                    depth--
+
+                Toast.makeText(this, depth.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+            is ProductListsActivity -> {
+                this.finish()
+            }
+        }
     }
 }

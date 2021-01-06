@@ -195,6 +195,16 @@ open class FirestoreClass {
             }
     }
 
+    fun getProducts(parentID: String, context: Context) : Task<QuerySnapshot> {
+        var queryRes = mFireStore.collection("products")
+                .whereEqualTo("parentID", parentID)
+                .get()
+
+        while (!queryRes.isComplete && !queryRes.isCanceled);
+
+        return  queryRes
+    }
+
     fun getCategories(depth: Int, context: Context) : Task<QuerySnapshot> {
 
         var queryRes = mFireStore.collection("categories")

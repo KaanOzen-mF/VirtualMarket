@@ -12,6 +12,6 @@ class Product (
         var information : String = "",
         var price : Double = 0.0,
         var stock : Int = 0,
-        var parrnetID : String = "",
+        var parentID : String = "",
         var imageURL : String = ""
 ): Parcelable, MarketItem

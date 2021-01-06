@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Product
@@ -21,14 +24,13 @@ class ProductPageActivity : BaseActivity() {
         imgView = findViewById<ImageView>(R.id.productImageView)
         tvProductName = findViewById<TextView>(R.id.productNameView)
 
-        val product : Product = Product()
+        val product : Product = intent.extras!!.getParcelable<Product>("item")!!
 
         val ONE_MEGABYTE: Long = 1024 * 1024
-        FirestoreClass().getImageReference(product).getBytes(ONE_MEGABYTE).addOnSuccessListener {
-            imgView.setImageBitmap(BitmapFactory.decodeByteArray(it,0,it.size))
-            tvProductName.text = product.name
-        }.addOnFailureListener {
-            Toast.makeText(this,"Can't Download Image File",Toast.LENGTH_SHORT).show()
-        }
+        Firebase.storage.reference.child("banada.jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Glide.with(this)
+                    .load(arr)
+                    .into(imgView)
+        }.addOnFailureListener { imgView.setImageResource(R.drawable.mainfood)}
     }
 }
