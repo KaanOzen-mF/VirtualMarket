@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="@color/green">
+    android:background="@color/greenForProduct">
 
     <EditText
         android:id="@+id/passwordText"
@@ -45,6 +45,7 @@
         app:layout_constraintHorizontal_bias="0.303"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTxt"
+        android:backgroundTint="@color/redForProductName"
         app:layout_constraintVertical_bias="0.84" />
 
     <Button
@@ -52,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="registerButClick"
+        android:backgroundTint="@color/redForProductName"
         android:text="REGISTER"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

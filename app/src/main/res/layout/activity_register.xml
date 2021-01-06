@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity"
-    android:background="@color/green">
+    android:background="@color/greenForProduct">
 
     <TextView
         android:id="@+id/createAnAccountTxt"
@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047" />
+        app:layout_constraintVertical_bias="0.072" />
 
     <ScrollView
         android:layout_width="351dp"
@@ -94,8 +94,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="REGISTER"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:backgroundTint="@color/redForProductName"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,7 +118,7 @@
                     android:layout_width="172dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/green"
+                    android:backgroundTint="@color/greenForProduct"
                     android:onClick="loginBut_registerClick"
                     android:text="LOGIN"
                     android:textSize="20dp"

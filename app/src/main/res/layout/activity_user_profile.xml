@@ -5,7 +5,7 @@
     android:id="@+id/profile_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_screen_background"
+    android:background="@color/greenForProduct"
     tools:context=".activity.UserProfileActivity">
 
     <ScrollView
@@ -92,6 +92,10 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 android:layout_marginBottom="108dp"
+                android:backgroundTint="@color/redForProductName"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:textColor="@color/greenForProduct"
                 android:text="@string/save" />
 
         </LinearLayout>

@@ -44,7 +44,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/category_title"
                 android:text="Category Name"
-                android:textColor="#000"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/redForProductName"
+                android:background="@color/greenForProduct"
                 android:textSize="19sp"
                 />
 

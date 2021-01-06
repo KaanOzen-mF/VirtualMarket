@@ -10,6 +10,8 @@
     <color name="green">#09B93B</color>
     <color name="colorSnackBarError">#DA310D</color>
     <color name="colorSnackBarSuccess">#81E661</color>
+    <color name="greenForProduct">#8bdc0b</color>
+    <color name="redForProductName">#fd5a1e</color>
 
     <color name="torku_red">#CB132B</color>
 </resources>
