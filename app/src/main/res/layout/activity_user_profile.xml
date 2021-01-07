@@ -93,10 +93,10 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginBottom="108dp"
                 android:backgroundTint="@color/redForProductName"
-                android:textStyle="bold"
+                android:text="@string/save"
+                android:textColor="@color/white"
                 android:textSize="25dp"
-                android:textColor="@color/greenForProduct"
-                android:text="@string/save" />
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

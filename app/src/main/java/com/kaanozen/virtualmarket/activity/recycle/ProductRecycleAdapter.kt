@@ -49,11 +49,11 @@ class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(product: Product){
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("banada.jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child("products").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
                         .load(arr)
                         .into(product_image)
-            }.addOnFailureListener { product_image.setImageResource(R.drawable.mainfood)}
+            }.addOnFailureListener { product_image.setImageResource(R.drawable.home_icon)}
 
             product_title.text = product.name
         }

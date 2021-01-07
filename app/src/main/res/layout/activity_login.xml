@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity"
-    android:background="@color/greenForProduct">
+    android:background="@color/greenForProduct"
+    tools:context=".activity.LoginActivity">
 
     <EditText
         android:id="@+id/passwordText"
@@ -36,32 +36,28 @@
         android:id="@+id/loginBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="140dp"
+        android:backgroundTint="@color/redForProductName"
         android:onClick="loginButClick"
         android:text="LOGIN"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTxt"
-        android:backgroundTint="@color/redForProductName"
-        app:layout_constraintVertical_bias="0.84" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="93dp" />
 
     <Button
         android:id="@+id/registerBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="registerButClick"
         android:backgroundTint="@color/redForProductName"
+        android:onClick="registerButClick"
         android:text="REGISTER"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.243"
         app:layout_constraintStart_toEndOf="@+id/loginBut"
         app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.198" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <FrameLayout
         android:id="@+id/frameLayout2"
@@ -81,17 +77,6 @@
             android:layout_gravity="center"
             app:srcCompat="@drawable/projectimage" />
     </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="378dp"
-        android:layout_height="77dp"
-        android:layout_marginBottom="28dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

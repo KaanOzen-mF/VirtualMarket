@@ -9,5 +9,4 @@ open class ProductCategory(
     var name : String = "",
     var depth : Int = 0,
     var isLeaf : Boolean = true,
-    var imageURL : String = ""
 ): Parcelable, MarketItem

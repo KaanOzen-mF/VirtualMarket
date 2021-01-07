@@ -49,12 +49,13 @@ class ProductCategoryRecycleAdapter() :  RecyclerView.Adapter<RecyclerView.ViewH
         private val category_title: TextView = itemView.category_title
 
         fun bind(category: ProductCategory){
+
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("banada.jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child("category").child(category.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
                         .load(arr)
                         .into(category_image)
-            }.addOnFailureListener { category_image.setImageResource(R.drawable.mainfood)}
+            }.addOnFailureListener { category_image.setImageResource(R.drawable.home_icon)}
 
 
             category_title.text = category.name
