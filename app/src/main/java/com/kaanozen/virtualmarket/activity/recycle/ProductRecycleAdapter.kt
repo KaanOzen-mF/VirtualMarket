@@ -49,7 +49,7 @@ class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(product: Product){
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("products").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
                         .load(arr)
                         .into(product_image)
