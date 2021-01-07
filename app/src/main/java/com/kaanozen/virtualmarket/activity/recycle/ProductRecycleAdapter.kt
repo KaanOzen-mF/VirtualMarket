@@ -1,16 +1,21 @@
 package com.kaanozen.virtualmarket.activity.recycle
 
+import android.app.ActivityManager
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
+import com.kaanozen.virtualmarket.activity.MainActivity
 import com.kaanozen.virtualmarket.activity.model.Product
+import io.grpc.Context
 import kotlinx.android.synthetic.main.activity_product_recycle_unit_view.view.*
 
 class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -53,7 +58,7 @@ class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 Glide.with(itemView)
                         .load(arr)
                         .into(product_image)
-            }.addOnFailureListener { product_image.setImageResource(R.drawable.home_icon)}
+            }.addOnFailureListener { product_image.setImageResource(R.drawable.water)}
 
             product_title.text = product.name
         }

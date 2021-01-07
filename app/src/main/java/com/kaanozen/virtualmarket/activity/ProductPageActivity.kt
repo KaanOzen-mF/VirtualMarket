@@ -21,20 +21,23 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
     private lateinit var tvProductName : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val product : Product = intent.extras!!.getParcelable<Product>("item")!!
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_page)
 
         imgView = findViewById<ImageView>(R.id.productImageView)
         tvProductName = findViewById<TextView>(R.id.productNameView)
 
-        val product : Product = intent.extras!!.getParcelable<Product>("item")!!
-
         val ONE_MEGABYTE: Long = 1024 * 1024
-        Firebase.storage.reference.child("banada.jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+        Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
             Glide.with(this)
                     .load(arr)
                     .into(imgView)
         }.addOnFailureListener { imgView.setImageResource(R.drawable.mainfood)}
+
+        tvProductName.text = product.name
 
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)

@@ -42,7 +42,7 @@ class ProductListsActivity : BaseActivity(), ProductRecycleAdapter.OnItemClickLi
         startActivity(intent)
     }
 
-    override fun onClick(view: View?) {
+    override fun onClick(view: View?) { //For bottom navigation bar
         if( view != null){
 
             when(view.id){

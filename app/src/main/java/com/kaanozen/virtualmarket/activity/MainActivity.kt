@@ -86,7 +86,7 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
         }
     }
 
-    override fun onClick(view: View?) {
+    override fun onClick(view: View?) { //For bottom navigation bar
         if( view != null){
 
             when(view.id){
