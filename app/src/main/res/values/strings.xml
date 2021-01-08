@@ -7,12 +7,18 @@
     <string name="err_msg_confirm_password">Please write a confirm password</string>
     <string name="err_msg_password_and_confirm_password_mismatch">Password and confirm password mismatch</string>
     <string name="register_success">Register Successful</string>
-    <string name="save">SAVE</string>
+    <string name="save">KAYDET</string>
     <string name="shoppingcard">SEPET</string>
     <string name="err_msg_enter_mobile_number">Invalid phone number</string>
     <string name="title_activity_category_page">CategoryPage</string>
+    <string name="profile_page">PROFİL</string>
+    <string name="create_an_account">HESAP OLUŞTUR</string>
+    <string name="register">KAYIT OL</string>
+    <string name="login">GİRİŞ YAP</string>
+    <string name="email">E-postanız</string>
 
-    <string name="logout">LOGOUT</string>
+
+    <string name="logout">ÇIKIŞ YAP</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

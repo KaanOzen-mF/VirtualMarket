@@ -5,7 +5,7 @@
     android:id="@+id/profile_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greenForProduct"
+    android:background="@color/white"
     tools:context=".activity.UserProfileActivity">
 
     <Button
@@ -28,11 +28,11 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="409dp"
+        android:layout_width="404dp"
         android:layout_height="563dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -47,7 +47,8 @@
                 android:layout_height="84dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="PROFILE PAGE"
+                android:text="@string/profile_page"
+                android:textColor="@color/torku_red"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -61,7 +62,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:gravity="center|left"
-                android:hint="First Name"
+                android:hint="Adınız"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -74,8 +75,9 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:gravity="center|left"
-                android:hint="Last Name"
+                android:hint="Soyadınız"
                 android:inputType="textPersonName" />
+
 
             <EditText
                 android:id="@+id/editEmail"
@@ -87,9 +89,8 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:gravity="center|left"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
-
 
             <EditText
                 android:id="@+id/editPhoneNumber"
@@ -101,7 +102,7 @@
                 android:layout_marginBottom="10dp"
                 android:ems="10"
                 android:gravity="center|left"
-                android:hint="Mobile Number"
+                android:hint="Telefon Numarası"
                 android:inputType="phone" />
 
             <Button
@@ -111,7 +112,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/redForProductName"
+                android:backgroundTint="@color/torku_red"
                 android:text="@string/save"
                 android:textColor="@color/white"
                 android:textSize="25dp"
@@ -122,7 +123,7 @@
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/redForProductName"
+                android:backgroundTint="@color/torku_red"
                 android:text="@string/logout"
                 android:textColor="@color/white"
                 android:textSize="25dp"
@@ -154,7 +155,7 @@
             android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/shopping_cart" />
+            app:srcCompat="@drawable/shopping_cart_red" />
 
         <ImageView
             android:id="@+id/user_bottom_logo_image_view"

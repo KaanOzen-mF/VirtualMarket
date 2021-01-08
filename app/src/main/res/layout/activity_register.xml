@@ -5,35 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity"
-    android:background="@color/greenForProduct">
-
-    <TextView
-        android:id="@+id/createAnAccountTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CREATE AN ACCOUNT"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.072" />
+    android:background="@drawable/fifty_register">
 
     <ScrollView
-        android:layout_width="351dp"
-        android:layout_height="487dp"
+        android:layout_width="378dp"
+        android:layout_height="534dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.589"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.698">
+        app:layout_constraintVertical_bias="0.336">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/createAnAccountTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/create_an_account"
+                android:textColor="@color/torku_red"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/firstNameTxt"
@@ -42,7 +40,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="left|center"
-                android:hint="First Name"
+                android:hint="Adınız"
                 android:textSize="20dp" />
 
             <EditText
@@ -52,7 +50,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="left|center"
-                android:hint="Last Name"
+                android:hint="Soyadınız"
                 android:textSize="20dp" />
 
             <EditText
@@ -61,9 +59,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:inputType="textEmailAddress"
                 android:gravity="left|center"
-                android:hint="Email"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
                 android:textSize="20dp" />
 
             <EditText
@@ -73,8 +71,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="left|center"
+                android:hint="Şifre"
                 android:inputType="textPassword"
-                android:hint="Password"
                 android:textSize="20dp" />
 
             <EditText
@@ -83,9 +81,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:inputType="textPassword"
                 android:gravity="left|center"
-                android:hint="Confirm Password"
+                android:hint="Şifre Onay"
+                android:inputType="textPassword"
                 android:textSize="20dp" />
 
             <Button
@@ -93,10 +91,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="REGISTER"
-                android:textStyle="bold"
+                android:backgroundTint="@color/torku_red"
+                android:text="@string/register"
                 android:textSize="25dp"
-                android:backgroundTint="@color/redForProductName"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,22 +103,24 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="172dp"
+                    android:layout_width="183dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="12dp"
                     android:gravity="center|left"
-                    android:text="Already have an account?"
+                    android:text="Zaten hesabınız var mı?"
+                    android:textColor="@color/torku_red"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/loginBut_register"
-                    android:layout_width="172dp"
+                    android:layout_width="201dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/greenForProduct"
+                    android:backgroundTint="@color/white"
                     android:onClick="loginBut_registerClick"
-                    android:text="LOGIN"
+                    android:text="@string/login"
+                    android:textColor="@color/torku_red"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 

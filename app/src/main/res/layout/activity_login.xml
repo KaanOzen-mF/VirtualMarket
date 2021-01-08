@@ -4,16 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/greenForProduct"
+    android:background="@color/white"
     tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="428dp"
+        android:layout_height="322dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/green_hill" />
 
     <EditText
         android:id="@+id/passwordText"
         android:layout_width="271dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="140dp"
         android:gravity="left|center"
-        android:hint="Password"
+        android:hint="Şifreniz"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/loginBut"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +38,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="36dp"
         android:gravity="left|center"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,43 +46,40 @@
 
     <Button
         android:id="@+id/loginBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="132dp"
-        android:backgroundTint="@color/redForProductName"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="580dp"
+        android:backgroundTint="@color/torku_red"
         android:onClick="loginButClick"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/registerBut"
+        app:layout_constraintHorizontal_bias="0.769"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/registerBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/redForProductName"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="580dp"
+        android:layout_marginEnd="80dp"
+        android:backgroundTint="@color/torku_red"
         android:onClick="registerButClick"
-        android:text="REGISTER"
+        android:text="@string/register"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
-        app:layout_constraintStart_toEndOf="@+id/loginBut"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="412dp"
-        android:layout_height="338dp"
-        android:layout_marginBottom="392dp"
+        android:layout_width="384dp"
+        android:layout_height="242dp"
+        android:layout_margin="10dp"
         android:background="@drawable/rectangle"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView3"
