@@ -25,11 +25,11 @@
             app:srcCompat="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/torku_bottom_logo_image_view"
+            android:id="@+id/shopping_cart_image_view"
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/projectimage" />
+            app:srcCompat="@drawable/shopping_cart"/>
 
         <ImageView
             android:id="@+id/user_bottom_logo_image_view"

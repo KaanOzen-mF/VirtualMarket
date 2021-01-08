@@ -1,14 +1,10 @@
 package com.kaanozen.virtualmarket.activity
 
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Point
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.NumberPicker
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -16,6 +12,9 @@ import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Product
 import kotlinx.android.synthetic.main.activity_product_page.*
+import kotlinx.android.synthetic.main.activity_product_page.home_bottom_image_view
+import kotlinx.android.synthetic.main.activity_product_page.shopping_cart_image_view
+import kotlinx.android.synthetic.main.activity_product_page.user_bottom_logo_image_view
 
 class ProductPageActivity : BaseActivity(),View.OnClickListener {
 
@@ -48,6 +47,8 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
 
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)
+        shopping_cart_image_view.setOnClickListener(this)
+
     }
 
     override fun onClick(view: View?) {

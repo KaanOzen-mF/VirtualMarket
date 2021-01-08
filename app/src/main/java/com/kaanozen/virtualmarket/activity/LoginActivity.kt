@@ -76,8 +76,14 @@ class LoginActivity : BaseActivity() {
     }
 
     fun userLoggedInSuccess(user : User){
-        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-        //intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+
+        Log.i("First Name", user.firstName)
+        Log.i("Last Name", user.lastName)
+        Log.i("Email", user.email)
+
+        val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+        intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
+
         startActivity(intent)
         finish()
     }

@@ -28,8 +28,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="563dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
@@ -109,13 +109,25 @@
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
-                android:layout_marginBottom="108dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/redForProductName"
                 android:text="@string/save"
                 android:textColor="@color/white"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/logoutBut"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/redForProductName"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -138,11 +150,11 @@
             app:srcCompat="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/torku_bottom_logo_image_view"
-            android:layout_width="130dp"
+            android:id="@+id/shopping_cart_image_view"
+            android:layout_width="72dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/projectimage" />
+            app:srcCompat="@drawable/shopping_cart" />
 
         <ImageView
             android:id="@+id/user_bottom_logo_image_view"

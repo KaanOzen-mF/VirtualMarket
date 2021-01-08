@@ -9,6 +9,7 @@ import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Order
 import com.kaanozen.virtualmarket.activity.recycle.OrderRecycleAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_list.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
@@ -35,6 +36,7 @@ class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListene
 
         findViewById<ImageView>(R.id.home_bottom_image_view).setOnClickListener(this)
         findViewById<ImageView>(R.id.user_bottom_logo_image_view).setOnClickListener(this)
+        findViewById<ImageView>(R.id.shopping_cart_image_view).setOnClickListener(this)
     }
 
     fun returnOrderList() : ArrayList<Order> {

@@ -1,15 +1,20 @@
 package com.kaanozen.virtualmarket.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.User
 import com.kaanozen.virtualmarket.activity.utilies.Constants
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_user_profile.*
+import kotlinx.android.synthetic.main.activity_user_profile.home_bottom_image_view
+import kotlinx.android.synthetic.main.activity_user_profile.shopping_cart_image_view
+import kotlinx.android.synthetic.main.activity_user_profile.user_bottom_logo_image_view
 
 
 class UserProfileActivity : BaseActivity(),View.OnClickListener{
@@ -24,7 +29,9 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
         setContentView(R.layout.activity_user_profile)
 
         // Create a instance of the User model class.
+
         var userDetails: User = User()
+
         if(intent.hasExtra(Constants.EXTRA_USER_DETAILS)) {
             // Get the user details from intent as a ParcelableExtra.
             userDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
@@ -40,16 +47,19 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
         editEmail.isEnabled = false
         editEmail.setText(userDetails.email)
 
+
         saveBut.setOnClickListener(this)
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)
         shoppingcardBut.setOnClickListener(this)
+        shopping_cart_image_view.setOnClickListener(this)
+        logoutBut.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         if (view != null) {
 
-            if((view.id == home_bottom_image_view.id) || (view.id == user_bottom_logo_image_view.id))
+            if((view.id == home_bottom_image_view.id) || (view.id == user_bottom_logo_image_view.id) || (view.id == shopping_cart_image_view.id))
             {
                 super.onClick(view)
                 return
@@ -80,6 +90,14 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
                     val intent = Intent(this,OrderListActivity::class.java)
                     startActivity(intent)
                 }
+                R.id.logoutBut ->{
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this,LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+
             }
         }
     }
@@ -88,6 +106,7 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
 
     private fun validateUserProfileDetails(): Boolean {
         return when {
+
             // The FirstName, LastName, and Email Id are not editable when they come from the login screen.
 
             // Check if the mobile number is not empty as it is mandatory to enter.
@@ -96,6 +115,8 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
                 false
             }
             else -> {
+                Toast.makeText(this@UserProfileActivity,"Succesfully add phone number",Toast.LENGTH_LONG).show()
+
                 true
             }
         }

@@ -80,6 +80,10 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
                 finish()
             }
+            R.id.shopping_cart_image_view ->{
+                val intent = Intent(this,OrderListActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

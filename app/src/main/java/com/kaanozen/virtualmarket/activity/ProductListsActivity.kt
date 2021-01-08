@@ -1,15 +1,17 @@
 package com.kaanozen.virtualmarket.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.model.Product
-import com.kaanozen.virtualmarket.activity.recycle.ProductCategoryRecycleAdapter
 import com.kaanozen.virtualmarket.activity.recycle.ProductRecycleAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_product_lists.*
+import kotlinx.android.synthetic.main.activity_product_lists.home_bottom_image_view
+import kotlinx.android.synthetic.main.activity_product_lists.shopping_cart_image_view
+import kotlinx.android.synthetic.main.activity_product_lists.user_bottom_logo_image_view
 
 class ProductListsActivity : BaseActivity(), ProductRecycleAdapter.OnItemClickListener,View.OnClickListener {
 
@@ -34,6 +36,8 @@ class ProductListsActivity : BaseActivity(), ProductRecycleAdapter.OnItemClickLi
 
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)
+        shopping_cart_image_view.setOnClickListener(this)
+
     }
 
     override fun OnItemClick(position: Int, item : Product) {

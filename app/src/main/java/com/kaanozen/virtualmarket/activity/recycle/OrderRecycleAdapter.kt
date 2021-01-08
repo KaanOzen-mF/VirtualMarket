@@ -67,8 +67,8 @@ class OrderRecycleAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }.addOnFailureListener { order_image.setImageResource(R.drawable.water)}
 
             order_title.text = order.productName
-            order_cost.text = "Adet: " + order.cost.toString()
-            order_quantity.text = "Tutar: " + order.quantitiy.toString()
+            order_cost.text = "Tutar: " + order.cost.toString()
+            order_quantity.text = "Adet: " + order.quantitiy.toString()
         }
 
         init {

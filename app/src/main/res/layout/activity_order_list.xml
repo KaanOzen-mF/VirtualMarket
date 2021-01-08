@@ -25,11 +25,11 @@
             app:srcCompat="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/torku_bottom_logo_image_view"
+            android:id="@+id/shopping_cart_image_view"
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/projectimage" />
+            app:srcCompat="@drawable/shopping_cart"/>
 
         <ImageView
             android:id="@+id/user_bottom_logo_image_view"
@@ -42,8 +42,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewOrder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="15dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_bar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
