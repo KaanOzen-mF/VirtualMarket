@@ -20,9 +20,9 @@ class SplashActivity : AppCompatActivity() {
         var timer = object : CountDownTimer(1000, 1000) {
             override fun onFinish()
             {
-                val main_intent : Intent = Intent(this@SplashActivity, MainActivity::class.java)
+                val intent : Intent = Intent(this@SplashActivity, LoginActivity::class.java)
 
-                startActivity((main_intent))
+                startActivity(intent)
 
                 finish()
             }

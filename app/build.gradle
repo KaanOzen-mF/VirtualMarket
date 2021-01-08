@@ -61,4 +61,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage-ktx'
     // FirebaseUI Storage only
     implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
+    //Coroutines
+    def coroutines_version = "1.4.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 }

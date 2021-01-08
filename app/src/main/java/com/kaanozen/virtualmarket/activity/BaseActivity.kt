@@ -1,6 +1,9 @@
 package com.kaanozen.virtualmarket.activity
 
+import android.content.Intent
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +16,7 @@ import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Product
 import com.kaanozen.virtualmarket.activity.model.ProductCategory
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
     private var categories = ArrayList<ProductCategory>()
     private var products = ArrayList<Product>()
@@ -69,6 +72,23 @@ open class BaseActivity : AppCompatActivity() {
         return this.products
     }
 
+    override fun onClick(view: View?)
+    {
+        when(view!!.id){
+            R.id.home_bottom_image_view ->{
+                BaseActivity.depth = 0
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.user_bottom_logo_image_view ->{
+                val intent = Intent(this,UserProfileActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
 
@@ -77,11 +97,13 @@ open class BaseActivity : AppCompatActivity() {
             is MainActivity -> {
                 if(depth >= 1)
                     depth--
-
-                Toast.makeText(this, depth.toString(), Toast.LENGTH_SHORT).show()
             }
 
             is ProductListsActivity -> {
+                this.finish()
+            }
+
+            is OrderListActivity -> {
                 this.finish()
             }
         }

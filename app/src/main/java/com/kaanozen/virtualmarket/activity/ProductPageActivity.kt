@@ -2,9 +2,11 @@ package com.kaanozen.virtualmarket.activity
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.Point
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -19,16 +21,19 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
 
     private lateinit var imgView : ImageView
     private lateinit var tvProductName : TextView
+    private lateinit var numberpicker : NumberPicker
+    private lateinit var product : Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val product : Product = intent.extras!!.getParcelable<Product>("item")!!
+        product = intent.extras!!.getParcelable<Product>("item")!!
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_page)
 
         imgView = findViewById<ImageView>(R.id.productImageView)
         tvProductName = findViewById<TextView>(R.id.productNameView)
+        numberpicker = findViewById<NumberPicker>(R.id.numberpicker)
 
         val ONE_MEGABYTE: Long = 1024 * 1024
         Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
@@ -38,28 +43,25 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
         }.addOnFailureListener { imgView.setImageResource(R.drawable.mainfood)}
 
         tvProductName.text = product.name
+        numberpicker.maxValue = product.stock
+        numberpicker.minValue = 1
 
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)
-
     }
 
     override fun onClick(view: View?) {
-        if( view != null){
 
-            when(view.id){
-                R.id.home_bottom_image_view ->{
-                    BaseActivity.depth = 0
-                    val intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                R.id.user_bottom_logo_image_view ->{
-                    val intent = Intent(this,UserProfileActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
+        if(view!!.id == orderBut.id)
+        {
+            product.stock = product.stock - numberpicker.value
+            FirestoreClass().addOrder(product,numberpicker.value,this)
+            numberpicker.value = 1
+            numberpicker.maxValue = product.stock
+        }
+        else
+        {
+            super.onClick(view)
         }
     }
 }

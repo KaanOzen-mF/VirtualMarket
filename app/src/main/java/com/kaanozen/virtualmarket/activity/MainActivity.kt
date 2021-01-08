@@ -29,35 +29,6 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Create an instance of Android SharedPreferences
-        val sharedPreferences =
-            getSharedPreferences(Constants.SHOP_PREFERENCES, Context.MODE_PRIVATE)
-
-        /*for (x in 0..7){
-
-            var cat = ProductCategory()
-
-            cat.name = "a"
-            cat.imageURL = "a"
-            cat.isLeaf = false
-            cat.depth = 0
-
-            FirestoreClass().addCategory(cat,this)
-        }
-
-        for (x in 0..13 )
-        {
-            var pro = Product()
-            pro.name = "a"
-            pro.imageURL = "a"
-            pro.parentID = "a"
-            pro.stock = 0
-            pro.price = 0.0
-            pro.information = "a"
-
-            FirestoreClass().addProduct(pro,this)
-        }*/
-
         recycleViewCategory.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             categoryRecycleAdapter = ProductCategoryRecycleAdapter()
@@ -83,25 +54,6 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
             BaseActivity.depth+=1
             var intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        }
-    }
-
-    override fun onClick(view: View?) { //For bottom navigation bar
-        if( view != null){
-
-            when(view.id){
-                R.id.home_bottom_image_view ->{
-                    BaseActivity.depth = 0
-                    val intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                R.id.user_bottom_logo_image_view ->{
-                    val intent = Intent(this,UserProfileActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
         }
     }
 }

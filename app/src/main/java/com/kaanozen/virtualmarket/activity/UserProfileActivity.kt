@@ -43,15 +43,20 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
         saveBut.setOnClickListener(this)
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)
-
+        shoppingcardBut.setOnClickListener(this)
     }
 
+    override fun onClick(view: View?) {
+        if (view != null) {
 
-    override fun onClick(v: View?) {
-        if (v != null) {
-            when (v.id) {
+            if((view.id == home_bottom_image_view.id) || (view.id == user_bottom_logo_image_view.id))
+            {
+                super.onClick(view)
+                return
+            }
+
+            when (view.id) {
                 R.id.saveBut ->{
-
                     if(validateUserProfileDetails()){
 
                         val userHashMap = HashMap<String, Any>()
@@ -60,7 +65,6 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
 
                         if (mobileNum.isNotEmpty()){
                             userHashMap[Constants.MOBILE] = mobileNum.toLong()
-
                         }
 
                         /*showErrorSnackBar("Your details are valid. You can update them.", false)*/
@@ -70,21 +74,13 @@ class UserProfileActivity : BaseActivity(),View.OnClickListener{
                                 this@UserProfileActivity,
                                 userHashMap
                         )
-
-
                     }
                 }
-
-                R.id.home_bottom_image_view ->{
-                    val intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.user_bottom_logo_image_view ->{
-                    val intent = Intent(this,UserProfileActivity::class.java)
+                R.id.shoppingcardBut ->{
+                    val intent = Intent(this,OrderListActivity::class.java)
                     startActivity(intent)
                 }
             }
-
         }
     }
 

@@ -52,17 +52,18 @@
         app:srcCompat="@drawable/rectangle" />
 
     <Button
-        android:id="@+id/orderButton"
+        android:id="@+id/orderBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/torku_red"
+        android:onClick="onClick"
         android:text="Al"
         app:layout_constraintBottom_toTopOf="@+id/bottom_bar_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.675" />
+        app:layout_constraintVertical_bias="0.468" />
 
     <ImageView
         android:id="@+id/productImageView"
@@ -87,10 +88,20 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/orderButton"
+        app:layout_constraintBottom_toTopOf="@+id/orderBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productImageView"
         app:layout_constraintVertical_bias="0.058" />
 
+    <NumberPicker
+        android:id="@+id/numberpicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_bar_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.654"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.357" />
 </androidx.constraintlayout.widget.ConstraintLayout>

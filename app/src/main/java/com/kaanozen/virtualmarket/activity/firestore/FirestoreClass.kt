@@ -1,8 +1,11 @@
 package com.kaanozen.virtualmarket.activity.firestore
 
 import android.app.Activity
+import android.app.Application
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.SharedPreferences
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
@@ -10,16 +13,18 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.activity.LoginActivity
+import com.kaanozen.virtualmarket.activity.OrderListActivity
 import com.kaanozen.virtualmarket.activity.RegisterActivity
-import com.kaanozen.virtualmarket.activity.model.MarketItem
-import com.kaanozen.virtualmarket.activity.model.Product
-import com.kaanozen.virtualmarket.activity.model.ProductCategory
-import com.kaanozen.virtualmarket.activity.model.User
+import com.kaanozen.virtualmarket.activity.model.*
+import com.kaanozen.virtualmarket.activity.recycle.OrderRecycleAdapter
 import com.kaanozen.virtualmarket.activity.utilies.Constants
+import kotlinx.coroutines.delay
+import java.lang.Thread.sleep
 
 //A custom class where we will add the operation performed for the FireStore database.
 
@@ -214,5 +219,71 @@ open class FirestoreClass {
         while (!queryRes.isComplete && !queryRes.isCanceled);
 
         return  queryRes
+    }
+
+    fun getOrders() : Task<QuerySnapshot> {
+
+        var queryRes = mFireStore.collection("orders")
+                .whereEqualTo("userID", getCurrentUserID())
+                .get()
+
+        while (!queryRes.isComplete && !queryRes.isCanceled);
+
+        return  queryRes
+    }
+
+    fun addOrder(product : Product, quantitiy : Int, context: Context)
+    {
+        var order : Order = Order()
+        order.cost = quantitiy * product.price
+        order.quantitiy = quantitiy
+        order.productID = product.id
+        order.userID = getCurrentUserID()
+        order.productName = product.name
+
+        mFireStore.collection("orders").add(order).addOnSuccessListener { orderDocument ->
+            order.id = orderDocument.id
+
+            mFireStore.collection("orders")
+                    .document(orderDocument.id)
+                    .set(order, SetOptions.merge())
+                    .addOnSuccessListener {
+                        mFireStore.collection("products")
+                                .document(product.id)
+                                .set(product, SetOptions.merge())
+                                .addOnSuccessListener { Toast.makeText(context,"Sipariş Sepete Eklendi",Toast.LENGTH_SHORT).show() }
+                    }
+        }
+    }
+
+    suspend fun removeOrder(order: Order) : Boolean {
+
+        var task1 = mFireStore.collection("orders").document(order.id).delete()
+
+        while (!task1.isComplete);
+
+        if(task1.isSuccessful)
+        {
+            var task2 = mFireStore.collection("orders").whereEqualTo("id", order.id).get()
+
+            while (!task2.isComplete);
+
+            if(task2.result != null)
+            {
+                mFireStore.collection("products").document(order.productID).get().addOnSuccessListener {x->
+                    var product : Product = x.toObject(Product::class.java)!!
+                    product.stock = product.stock + order.quantitiy
+                    mFireStore.collection("products").document(product.id).set(product, SetOptions.merge())
+                }
+
+                return true
+            }
+            else
+            {
+                return true
+            }
+        }
+        else
+            return false
     }
 }

@@ -36,13 +36,15 @@
         android:id="@+id/loginBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="132dp"
         android:backgroundTint="@color/redForProductName"
         android:onClick="loginButClick"
         android:text="LOGIN"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="93dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/registerBut"

@@ -41,23 +41,4 @@ class ProductListsActivity : BaseActivity(), ProductRecycleAdapter.OnItemClickLi
         intent.putExtra("item", item)
         startActivity(intent)
     }
-
-    override fun onClick(view: View?) { //For bottom navigation bar
-        if( view != null){
-
-            when(view.id){
-                R.id.home_bottom_image_view ->{
-                    BaseActivity.depth = 0
-                    val intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                R.id.user_bottom_logo_image_view ->{
-                    val intent = Intent(this,UserProfileActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
-        }
-    }
 }
