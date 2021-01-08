@@ -2,17 +2,15 @@ package com.kaanozen.virtualmarket.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Order
 import com.kaanozen.virtualmarket.activity.recycle.OrderRecycleAdapter
-import com.squareup.okhttp.Dispatcher
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_order_list.*
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 
@@ -35,8 +33,8 @@ class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListene
         orderRecycleAdapter.submitItems(this.returnOrderList())
         orderRecycleAdapter.submitListener(this)
 
-        home_bottom_image_view.setOnClickListener(this)
-        user_bottom_logo_image_view.setOnClickListener(this)
+        findViewById<ImageView>(R.id.home_bottom_image_view).setOnClickListener(this)
+        findViewById<ImageView>(R.id.user_bottom_logo_image_view).setOnClickListener(this)
     }
 
     fun returnOrderList() : ArrayList<Order> {

@@ -1,16 +1,10 @@
 package com.kaanozen.virtualmarket.activity
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Product
