@@ -207,7 +207,7 @@ open class FirestoreClass {
 
     fun removeOrder(order: Order) : Boolean {
 
-        var task1 = mFireStore.collection("r").document(order.id).delete() // Delete the order
+        var task1 = mFireStore.collection(Constants.ORDERS).document(order.id).delete() // Delete the order
 
         while (!task1.isComplete); //Wait while task is not completed
 
