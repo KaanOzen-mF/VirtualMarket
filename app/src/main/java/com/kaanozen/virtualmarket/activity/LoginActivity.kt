@@ -21,15 +21,21 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
     }
 
+    //Login button method for logging in
+
     fun loginButClick(view:View) {
         loginRegisteredUser()
     }
+
+    //Register button method for opening registration page
 
     fun registerButClick(view:View) {
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
         startActivity(intent)
         finish()
     }
+
+    //Function to check if inputs are valid
 
     private fun validateLoginDetails(): Boolean {
         if(emailText.text.isEmpty())
@@ -45,33 +51,30 @@ class LoginActivity : BaseActivity() {
         return true
     }
 
+    //Login function
+
     private fun loginRegisteredUser() {
 
-        if (validateLoginDetails()) {
+        if (validateLoginDetails()) { //If inputs are valid
+
+            //Take information of the user
 
             val email = emailText.text.toString().trim { it <= ' ' }
             val password = passwordText.text.toString().trim { it <= ' ' }
 
             // Log-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
+                .addOnCompleteListener { task -> //If successful
                     if (task.isSuccessful)
                     {
-                        FirestoreClass().getUserDetails(this@LoginActivity)
+                        FirestoreClass().getUserDetails(this@LoginActivity) //Get user details and open profile activity
                     }
                     else
                     {
-                        showErrorSnackBar(task.exception!!.message.toString(), true)
+                        showErrorSnackBar(task.exception!!.message.toString(), true) //Give error
                     }
                 }
         }
-    }
-
-    fun userLoggedInSuccess(user : User){
-        val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
-        intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
-        startActivity(intent)
-        finish()
     }
 }
 

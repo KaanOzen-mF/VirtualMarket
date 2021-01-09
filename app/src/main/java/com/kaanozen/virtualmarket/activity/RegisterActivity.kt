@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
+import com.kaanozen.virtualmarket.activity.model.User
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -18,69 +19,64 @@ class RegisterActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        //Set register buttons onClick method
         registerBut_register.setOnClickListener{
             registerUser()
         }
     }
 
+    //When login is pressed, go the login screen
     fun loginBut_registerClick(view : View) {
         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-    /**
-     * A function to validate the entries of a new user.
-     */
+    //Function to control user input values
     private fun validateRegisterDetails(): Boolean {
 
-        if(firstNameTxt.text.isEmpty())
-        {
+        if(firstNameTxt.text.isEmpty()) {
             showErrorSnackBar(resources.getString(R.string.err_msg_first_name), true)
             return false
         }
 
-        if(lastNameTxt.text.isEmpty())
-        {
+        if(lastNameTxt.text.isEmpty()) {
             showErrorSnackBar(resources.getString(R.string.err_msg_last_name), true)
             return false
         }
 
-        if(emailTxt.text.isEmpty())
-        {
+        if(emailTxt.text.isEmpty()) {
             showErrorSnackBar(resources.getString(R.string.err_msg_email), true)
             return false
         }
 
-        if(passwordTxt.text.isEmpty())
-        {
+        if(passwordTxt.text.isEmpty()) {
             showErrorSnackBar(resources.getString(R.string.err_msg_password), true)
             return false
         }
 
-        if(confirmPasswordTxt.text.isEmpty())
-        {
+        if(confirmPasswordTxt.text.isEmpty()) {
             showErrorSnackBar(resources.getString(R.string.err_msg_confirm_password),true)
             return false
         }
 
         return true
     }
-    /**
-     * A function to register the user with email and password using FirebaseAuth.
-     */
+
+    //Function to register user
     private fun registerUser() {
 
-        // Check with validate function if the entries are valid or not.
+        // Check  if the entries are valid or not.
         if (validateRegisterDetails()) {
 
+            //Get input values
             val email: String = emailTxt.text.toString().trim { it <= ' ' }
             val password: String = passwordTxt.text.toString().trim { it <= ' ' }
 
-            // Create an instance and create a register a user with email and password.
+            // Create an authentication on the database with email and password in FireBase Authentication System
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
-                    OnCompleteListener<AuthResult> { task ->
+                    OnCompleteListener<AuthResult> { task -> //If task is completed
 
                         // If the registration is successfully done
                         if (task.isSuccessful) {
@@ -88,15 +84,15 @@ class RegisterActivity : BaseActivity() {
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                            val user = com.kaanozen.virtualmarket.activity.model.User(
+                            //Create a user to store in user table
+                            val user = User(
                                 firebaseUser.uid,
                                 firstNameTxt.text.toString().trim{ it <= ' '},
                                 lastNameTxt.text.toString().trim { it <= ' ' },
                                 emailTxt.text.toString().trim { it <= ' ' }
-
                             )
 
-                            //we store user register info to firestore database
+                            //we store user info to firestore database
                             FirestoreClass().registerUser(this@RegisterActivity, user)
                         } else {
                             // If the registering is not successful then show error message.
@@ -105,9 +101,4 @@ class RegisterActivity : BaseActivity() {
                     })
         }
     }
-
-    fun userRegistrationSuccess(){
-        Toast.makeText(this@RegisterActivity,resources.getString(R.string.register_success),Toast.LENGTH_LONG).show()
-    }
-
 }

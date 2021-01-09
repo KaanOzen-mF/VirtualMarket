@@ -24,13 +24,11 @@ class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: ArrayList<Product> = ArrayList()
     private lateinit var listener : ProductRecycleAdapter.OnItemClickListener
 
-    fun submitItems(products : ArrayList<Product>)
-    {
+    fun submitItems(products : ArrayList<Product>) {
         this.items = products
     }
 
-    fun submitListener(listener_: ProductRecycleAdapter.OnItemClickListener)
-    {
+    fun submitListener(listener_: ProductRecycleAdapter.OnItemClickListener) {
         this.listener = listener_
     }
 

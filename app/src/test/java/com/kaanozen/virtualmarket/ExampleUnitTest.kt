@@ -9,6 +9,9 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+
+//This file is not included in the program
+
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {

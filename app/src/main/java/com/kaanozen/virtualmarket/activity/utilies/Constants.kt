@@ -12,8 +12,6 @@ object Constants {
 
     const val CATEGORIES : String = "categories"
 
-    const val MOBILE : String = "mobile"
-
     const val EXTRA_USER_DETAILS: String = "extra_user_details"
 
     const val ORDERS : String = "orders"

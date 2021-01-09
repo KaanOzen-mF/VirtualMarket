@@ -12,17 +12,19 @@ import com.kaanozen.virtualmarket.activity.model.ProductCategory
 
 open class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
+    //Categories and products are stored in the BaseActivity instances
+
     private var categories = ArrayList<ProductCategory>()
     private var products = ArrayList<Product>()
 
-    companion object {
-        var depth : Int = 0
-    }
+    //SnackBar is a view object that is used for displaying messages
 
     fun showErrorSnackBar(message: String, errorMessage: Boolean) {
         val snackBar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
+
+        //If it is an error message use red but if it is not an error message use green
 
         if (errorMessage) {
             snackBarView.setBackgroundColor(
@@ -42,58 +44,81 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         snackBar.show()
     }
 
-    fun returnCategoryList(): ArrayList<ProductCategory> {
+    //Function to return all categories for a given depth value
 
-        categories.clear()
+    fun returnCategoryList(parentID : String): ArrayList<ProductCategory>? {
 
-        var queryRes = FirestoreClass().getCategories(depth,this)
+        categories.clear() //Clear the list
 
-        for (x in queryRes.result!!.documents)
-            categories.add(x.toObject(ProductCategory::class.java)!!)
+        var queryRes = FirestoreClass().getCategories(parentID,this)
 
-        return this.categories
+        if(queryRes.isSuccessful) { // Query is OK
+            for (x in queryRes.result!!.documents)
+                categories.add(x.toObject(ProductCategory::class.java)!!) // Get objects as categories
+
+            return this.categories //Return them
+        }
+        else {
+            showErrorSnackBar("Kategori verisi alınamadı", true)
+
+            return null
+        }
     }
 
-    fun returnProductList(categoryID : String ): ArrayList<Product> {
+    //Function to return all products for a given category
 
-        products.clear()
+    fun returnProductList(categoryID : String ): ArrayList<Product>? {
+
+        products.clear() //Clear list
 
         var queryRes = FirestoreClass().getProducts(categoryID,this)
 
-        for (x in queryRes.result!!.documents)
-            products.add(x.toObject(Product::class.java)!!)
+        if(queryRes.isSuccessful) { //If query is OK
+            for (x in queryRes.result!!.documents)
+                products.add(x.toObject(Product::class.java)!!)
 
-        return this.products
+            return this.products
+        }
+        else {
+            showErrorSnackBar("Kategori verisi alınamadı", true)
+
+            return null
+        }
     }
 
-    override fun onClick(view: View?) {
+    //OnClick method for navigation bar at the bottom
+
+    //User image, Shopping cart image, Home button
+
+    //Navigation Handler
+
+    override fun onClick(view: View?) { //Take action depending on the given view object
         when(view!!.id){
             R.id.home_bottom_image_view ->{
-                BaseActivity.depth = 0
                 val intent = Intent(this,MainActivity::class.java)
+                intent.putExtra("categoryID", "root")
                 startActivity(intent)
                 finish()
             }
-            R.id.user_bottom_logo_image_view ->{
+            R.id.user_bottom_logo_image_view ->{ //Get user info from the database and open the profile page
                 FirestoreClass().getUserDetails(this)
             }
-            R.id.shopping_cart_image_view ->{
+            R.id.shopping_cart_image_view ->{ //Open the shopping cart page
                 val intent = Intent(this,OrderListActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
+    //Take action when android system back button is pressed
+
+    //To navigate back in the categories or product lists
+
+    //Destroy activates to prevent memory leakage
+
     override fun onBackPressed() {
         super.onBackPressed()
-
         when(this){
-
-            is MainActivity -> {
-                if(depth >= 1)
-                    depth--
-            }
-
             is ProductListsActivity -> {
                 this.finish()
             }

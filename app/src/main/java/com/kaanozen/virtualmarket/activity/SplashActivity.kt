@@ -17,19 +17,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        //Wait for one second and open login activity
         var timer = object : CountDownTimer(1000, 1000) {
-            override fun onFinish()
-            {
+            override fun onFinish() {
                 val intent : Intent = Intent(this@SplashActivity, LoginActivity::class.java)
-
                 startActivity(intent)
-
                 finish()
             }
-            override fun onTick(millisUntilFinished: Long) {
-            }
+            override fun onTick(millisUntilFinished: Long) {}
         }
-
         timer.start()
     }
 }

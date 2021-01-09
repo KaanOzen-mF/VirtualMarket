@@ -12,6 +12,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.kaanozen.virtualmarket.activity.BaseActivity
 import com.kaanozen.virtualmarket.activity.LoginActivity
 import com.kaanozen.virtualmarket.activity.RegisterActivity
 import com.kaanozen.virtualmarket.activity.UserProfileActivity
@@ -21,36 +22,33 @@ import com.kaanozen.virtualmarket.activity.model.ProductCategory
 import com.kaanozen.virtualmarket.activity.model.User
 import com.kaanozen.virtualmarket.activity.utilies.Constants
 
-//A custom class where we will add the operation performed for the FireStore database.
+//A custom class where add, remove and get operations are performed for the FireStore database.
 
 open class FirestoreClass {
 
     // Access a Cloud Firestore instance.
     private val mFireStore = FirebaseFirestore.getInstance()
 
-    private val storage = Firebase.storage
+    //Function to register a user
 
     fun registerUser(activity: RegisterActivity, userInfo: User) {
 
         // The "users" is collection name. If the collection is already created then it will not create the same one again.
         mFireStore.collection("users")
-            // Document ID for users fields. Here the document it is the User ID.
+            // Document ID for users fields. Here the document corresponds to the user itself
             .document(userInfo.id)
-            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge later on instead of replacing the fields.
+            // Here the userInfo are the Fields of the document and the SetOption is set to merge.
             .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
-
                 // Here call a function of base activity for transferring the result to it.
-                activity.userRegistrationSuccess()
+                activity.showErrorSnackBar("Kullanıcı Kaydı Başarılı", false)
             }
             .addOnFailureListener { e ->
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while registering the user.",
-                    e
-                )
+                activity.showErrorSnackBar("Kullanıcı Kaydı Başarasız", true)
             }
     }
+
+    //Function to get unique ID of current logged in user
 
     private fun getCurrentUserID(): String {
         // An Instance of currentUser using FirebaseAuth
@@ -65,52 +63,48 @@ open class FirestoreClass {
         return currentUserID
     }
 
+    //Function to open profile page of the current logged in user
+
     fun getUserDetails(activity: Activity) {
 
-        // Here we pass the collection name from which we wants the data.
+        // Here we pass the collection name from which we want the data.
         mFireStore.collection(Constants.USERS)
             // The document id to get the Fields of user.
             .document(getCurrentUserID())
             .get()
             .addOnSuccessListener { document ->
-
                 // Here we have received the document snapshot which is converted into the User Data model object.
                 val user = document.toObject(User::class.java)!!
 
                 //pass the result to the Login Activity.
-                when (activity) {
-                    is LoginActivity -> {
-                        activity.userLoggedInSuccess(user)
-                    }
-                    else -> {
-                        val intent = Intent(activity, UserProfileActivity::class.java)
-                        intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
-                        activity.startActivity(intent)
-                        activity.finish()
-                    }
-                }
-
+                val intent = Intent(activity, UserProfileActivity::class.java)
+                intent.putExtra(Constants.EXTRA_USER_DETAILS, user) //Send user to the next activity
+                activity.startActivity(intent)
+                activity.finish() //Finishes the activity and blocks turning back
             }
     }
+
+    //Function to update user information
 
     fun updateUserProfileData(activity: Activity, userHashMap: HashMap<String, Any>) {
-        // Collection Name
-        mFireStore.collection(Constants.USERS)
-            // Document ID against which the data to be updated. Here the document id is the current logged in user id.
-            .document(getCurrentUserID())
-            // A HashMap of fields which are to be updated.
-            .update(userHashMap)
-            .addOnSuccessListener {
-
+        when (activity){
+            is BaseActivity ->{
+                mFireStore.collection(Constants.USERS)
+                        .document(getCurrentUserID())
+                        .update(userHashMap)
+                        .addOnSuccessListener {
+                            activity.showErrorSnackBar("Profil Güncellendi", false)
+                        }
+                        .addOnFailureListener { e ->
+                            activity.showErrorSnackBar("Profil Güncellenemedi", false)
+                        }
             }
-            .addOnFailureListener { e ->
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while updating the user details.",
-                    e
-                )
-            }
+        }
     }
+
+    //Function to add product from the application
+    // TODO: addProduct and addCategory are used for debug purposes
+    // TODO: to add products and categories within the application
 
     fun addProduct(product: Product, context: Context) {
         mFireStore.collection(Constants.PRODUCTS)
@@ -144,6 +138,9 @@ open class FirestoreClass {
             }
     }
 
+    //Function to get query result of products
+    //Query is based on parrentID which is the category id
+
     fun getProducts(parentID: String, context: Context) : Task<QuerySnapshot> {
         var queryRes = mFireStore.collection(Constants.PRODUCTS)
             .whereEqualTo("parentID", parentID)
@@ -154,7 +151,10 @@ open class FirestoreClass {
         return  queryRes
     }
 
-    fun getCategories(depth: Int, context: Context) : Task<QuerySnapshot> {
+    //Function to get query result of categories
+    //Query is based on parent of the category
+    //Gets all categories with the same parent
+    fun getCategories(parentID: String, context: Context) : Task<QuerySnapshot> {
 
         var queryRes = mFireStore.collection(Constants.CATEGORIES)
             .whereEqualTo("depth", depth)
@@ -164,6 +164,8 @@ open class FirestoreClass {
 
         return  queryRes
     }
+
+    //Function to get query result of a users orders
 
     fun getOrders() : Task<QuerySnapshot> {
 
@@ -175,6 +177,8 @@ open class FirestoreClass {
 
         return  queryRes
     }
+
+    //Function to add an order for a user
 
     fun addOrder(product : Product, quantity : Int, context: Context) {
         var order : Order = Order()
@@ -199,33 +203,28 @@ open class FirestoreClass {
         }
     }
 
+    //Function to remove an order when user cancels one
+
     fun removeOrder(order: Order) : Boolean {
 
-        var task1 = mFireStore.collection(Constants.ORDERS).document(order.id).delete()
+        var task1 = mFireStore.collection("r").document(order.id).delete() // Delete the order
 
-        while (!task1.isComplete);
+        while (!task1.isComplete); //Wait while task is not completed
 
-        if(task1.isSuccessful)
-        {
-            var task2 = mFireStore.collection(Constants.ORDERS).whereEqualTo("id", order.id).get()
+        var task2 = mFireStore.collection(Constants.ORDERS).whereEqualTo("id", order.id).get() //Try to reach the same order again
 
-            while (!task2.isComplete);
+        while (!task2.isComplete); //Wait while task is not completed
 
-            if(task2.result != null)
-            {
-                mFireStore.collection(Constants.PRODUCTS).document(order.productID).get().addOnSuccessListener {x->
-                    var product : Product = x.toObject(Product::class.java)!!
-                    product.stock = product.stock + order.quantitiy
-                    mFireStore.collection(Constants.PRODUCTS).document(product.id).set(product, SetOptions.merge())
-                }
-                return true
+        if(task2.result!!.isEmpty) { //If the result is empty update the stock of the product
+            mFireStore.collection(Constants.PRODUCTS).document(order.productID).get().addOnSuccessListener {x->
+                var product : Product = x.toObject(Product::class.java)!!
+                product.stock = product.stock + order.quantitiy
+                mFireStore.collection(Constants.PRODUCTS).document(product.id).set(product, SetOptions.merge())
             }
-            else
-            {
-                return true
-            }
+            return true
         }
-        else
+        else {
             return false
+        }
     }
 }

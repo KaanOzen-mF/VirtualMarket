@@ -17,14 +17,15 @@ import kotlinx.coroutines.launch
 
 class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListener, View.OnClickListener {
 
-    private lateinit var orderRecycleAdapter: OrderRecycleAdapter
+    private lateinit var orderRecycleAdapter: OrderRecycleAdapter //Create the order recycle view
 
-    private var orders : ArrayList<Order> = ArrayList<Order>()
+    private var orders : ArrayList<Order> = ArrayList<Order>() //Array to hold user orders
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_list)
 
+        //Initialize recycle view
         recycleViewOrder.apply {
             layoutManager = LinearLayoutManager(this@OrderListActivity)
             orderRecycleAdapter = OrderRecycleAdapter()
@@ -34,23 +35,27 @@ class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListene
         orderRecycleAdapter.submitItems(this.returnOrderList())
         orderRecycleAdapter.submitListener(this)
 
+        //Set event listeners of the bottom application navigation views
         findViewById<ImageView>(R.id.home_bottom_image_view).setOnClickListener(this)
         findViewById<ImageView>(R.id.user_bottom_logo_image_view).setOnClickListener(this)
         findViewById<ImageView>(R.id.shopping_cart_image_view).setOnClickListener(this)
     }
 
+    //Function get list of orders for a given user
     private fun returnOrderList() : ArrayList<Order> {
+        orders.clear() //Clear th list
 
-        orders.clear()
+        var queryRes = FirestoreClass().getOrders() //Get query result
 
-        var queryRes = FirestoreClass().getOrders()
+        for (x in queryRes.result!!.documents) //For each order in the query result
+            orders.add(x.toObject(Order::class.java)!!) //Add them to the order list
 
-        for (x in queryRes.result!!.documents)
-            orders.add(x.toObject(Order::class.java)!!)
-
-        return this.orders
+        return this.orders //return list
     }
 
+    //Create a coroutine
+    //Cancel an order
+    //Notify the recycle view that order is cancelled
     override fun OnItemClick(position: Int, item: Order) {
 
         CoroutineScope(Main).launch {
@@ -62,7 +67,7 @@ class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListene
             }
             else
             {
-                Toast.makeText(this@OrderListActivity, "İşlem Başarısız", Toast.LENGTH_SHORT).show()
+                showErrorSnackBar("İşlem Başarısız",true)
             }
         }
     }

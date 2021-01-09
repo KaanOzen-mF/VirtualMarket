@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kaanozen.virtualmarket">
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--This file is for activity definitions of the program-->
+    <!--Activities are in portrait mode-->
 
     <application
         android:allowBackup="true"
@@ -23,20 +25,22 @@
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VirtualMarket.NoActionBar" />
+
+        <!--Make Splashscreen Starting Activity-->
+
         <activity
             android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.VirtualMarket.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".activity.UserProfileActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
     </application>
-
 </manifest>
