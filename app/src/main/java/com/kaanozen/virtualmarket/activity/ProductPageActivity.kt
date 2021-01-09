@@ -32,8 +32,8 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
         val ONE_MEGABYTE: Long = 1024 * 1024
         Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
             Glide.with(this)
-                .load(arr)
-                .into(productImageView)
+                    .load(arr)
+                    .into(productImageView)
         }.addOnFailureListener { productImageView.setImageResource(R.drawable.mainfood)}
 
         //Set the order quantity selector

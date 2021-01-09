@@ -108,18 +108,18 @@ open class FirestoreClass {
 
     fun addProduct(product: Product, context: Context) {
         mFireStore.collection(Constants.PRODUCTS)
-            .add(product)
-            .addOnSuccessListener { documentReference ->
+                .add(product)
+                .addOnSuccessListener { documentReference ->
 
                 product.id = documentReference.id
 
-                mFireStore.collection(Constants.PRODUCTS)
-                    .document(documentReference.id)
-                    .set(product, SetOptions.merge())
-                    .addOnSuccessListener {
-                        Toast.makeText(context,"Product Added",Toast.LENGTH_SHORT).show()
-                    }
-            }
+                    mFireStore.collection(Constants.PRODUCTS)
+                            .document(documentReference.id)
+                            .set(product, SetOptions.merge())
+                            .addOnSuccessListener {
+                                Toast.makeText(context,"Product Added",Toast.LENGTH_SHORT).show()
+                            }
+                }
     }
 
     fun addCategory(category: ProductCategory, context: Context) {
@@ -143,8 +143,8 @@ open class FirestoreClass {
 
     fun getProducts(parentID: String, context: Context) : Task<QuerySnapshot> {
         var queryRes = mFireStore.collection(Constants.PRODUCTS)
-            .whereEqualTo("parentID", parentID)
-            .get()
+                .whereEqualTo("parentID", parentID)
+                .get()
 
         while (!queryRes.isComplete && !queryRes.isCanceled);
 
@@ -157,8 +157,8 @@ open class FirestoreClass {
     fun getCategories(parentID: String, context: Context) : Task<QuerySnapshot> {
 
         var queryRes = mFireStore.collection(Constants.CATEGORIES)
-            .whereEqualTo("depth", depth)
-            .get()
+                .whereEqualTo("parentID", parentID)
+                .get()
 
         while (!queryRes.isComplete && !queryRes.isCanceled);
 
@@ -170,8 +170,8 @@ open class FirestoreClass {
     fun getOrders() : Task<QuerySnapshot> {
 
         var queryRes = mFireStore.collection(Constants.ORDERS)
-            .whereEqualTo("userID", getCurrentUserID())
-            .get()
+                .whereEqualTo("userID", getCurrentUserID())
+                .get()
 
         while (!queryRes.isComplete && !queryRes.isCanceled);
 
@@ -192,14 +192,26 @@ open class FirestoreClass {
             order.id = orderDocument.id
 
             mFireStore.collection(Constants.ORDERS)
-                .document(orderDocument.id)
-                .set(order, SetOptions.merge())
-                .addOnSuccessListener {
-                    mFireStore.collection(Constants.PRODUCTS)
-                        .document(product.id)
-                        .set(product, SetOptions.merge())
-                        .addOnSuccessListener { Toast.makeText(context,"Sipariş Sepete Eklendi",Toast.LENGTH_SHORT).show() }
-                }
+                    .document(orderDocument.id)
+                    .set(order, SetOptions.merge())
+                    .addOnSuccessListener {
+                        mFireStore.collection(Constants.PRODUCTS)
+                                .document(product.id)
+                                .set(product, SetOptions.merge())
+                                .addOnSuccessListener {
+                                    when(context){
+                                        is BaseActivity->{
+                                            context.showErrorSnackBar("Ürün Sepete Eklendi",false)
+                                        }
+                                    }
+                                }
+                    }.addOnFailureListener{
+                        when(context){
+                            is BaseActivity->{
+                                context.showErrorSnackBar("İşlem Hatası",true)
+                            }
+                        }
+                    }
         }
     }
 
