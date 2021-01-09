@@ -18,9 +18,6 @@ import kotlinx.android.synthetic.main.activity_product_page.user_bottom_logo_ima
 
 class ProductPageActivity : BaseActivity(),View.OnClickListener {
 
-    private lateinit var imgView : ImageView
-    private lateinit var tvProductName : TextView
-    private lateinit var numberpicker : NumberPicker
     private lateinit var product : Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,20 +27,20 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_page)
 
-        imgView = findViewById<ImageView>(R.id.productImageView)
-        tvProductName = findViewById<TextView>(R.id.productNameView)
-        numberpicker = findViewById<NumberPicker>(R.id.numberpicker)
-
         val ONE_MEGABYTE: Long = 1024 * 1024
         Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
             Glide.with(this)
-                    .load(arr)
-                    .into(imgView)
-        }.addOnFailureListener { imgView.setImageResource(R.drawable.mainfood)}
+                .load(arr)
+                .into(productImageView)
+        }.addOnFailureListener { productImageView.setImageResource(R.drawable.mainfood)}
 
-        tvProductName.text = product.name
         numberpicker.maxValue = product.stock
         numberpicker.minValue = 1
+
+        productNameView.text = product.name
+        productInfoView.text = product.information
+        productStockView.text = product.stock.toString()
+        productPriceView.text = product.price.toString() + " TL"
 
         home_bottom_image_view.setOnClickListener(this)
         user_bottom_logo_image_view.setOnClickListener(this)

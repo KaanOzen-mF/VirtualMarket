@@ -14,7 +14,6 @@ class MainActivity : BaseActivity(), ProductCategoryRecycleAdapter.OnItemClickLi
 
     private lateinit var categoryRecycleAdapter: ProductCategoryRecycleAdapter
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

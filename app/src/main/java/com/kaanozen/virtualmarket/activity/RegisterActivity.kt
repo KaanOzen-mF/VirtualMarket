@@ -23,7 +23,7 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
-    public fun loginBut_registerClick(view : View) {
+    fun loginBut_registerClick(view : View) {
         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
         startActivity(intent)
         finish()
@@ -79,37 +79,35 @@ class RegisterActivity : BaseActivity() {
 
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(
-                            OnCompleteListener<AuthResult> { task ->
+                .addOnCompleteListener(
+                    OnCompleteListener<AuthResult> { task ->
 
-                                // If the registration is successfully done
-                                if (task.isSuccessful) {
+                        // If the registration is successfully done
+                        if (task.isSuccessful) {
 
-                                    // Firebase registered user
-                                    val firebaseUser: FirebaseUser = task.result!!.user!!
+                            // Firebase registered user
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
 
-                                    val user = com.kaanozen.virtualmarket.activity.model.User(
-                                        firebaseUser.uid,
-                                        firstNameTxt.text.toString().trim{ it <= ' '},
-                                        lastNameTxt.text.toString().trim { it <= ' ' },
-                                        emailTxt.text.toString().trim { it <= ' ' }
+                            val user = com.kaanozen.virtualmarket.activity.model.User(
+                                firebaseUser.uid,
+                                firstNameTxt.text.toString().trim{ it <= ' '},
+                                lastNameTxt.text.toString().trim { it <= ' ' },
+                                emailTxt.text.toString().trim { it <= ' ' }
 
-                                    )
+                            )
 
-                                    //we store user register info to firestore database
-                                    FirestoreClass().registerUser(this@RegisterActivity, user)
-                                } else {
-                                    // If the registering is not successful then show error message.
-                                    showErrorSnackBar(task.exception!!.message.toString(), true)
-                                }
-                            })
+                            //we store user register info to firestore database
+                            FirestoreClass().registerUser(this@RegisterActivity, user)
+                        } else {
+                            // If the registering is not successful then show error message.
+                            showErrorSnackBar(task.exception!!.message.toString(), true)
+                        }
+                    })
         }
     }
 
     fun userRegistrationSuccess(){
-
         Toast.makeText(this@RegisterActivity,resources.getString(R.string.register_success),Toast.LENGTH_LONG).show()
-
     }
 
 }

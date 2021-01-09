@@ -31,59 +31,45 @@ class LoginActivity : BaseActivity() {
         finish()
     }
 
-    //this function check our user email and password for empty string
-    //if user do not write anything that part, user see error message
     private fun validateLoginDetails(): Boolean {
-
         if(emailText.text.isEmpty())
         {
             showErrorSnackBar(resources.getString(R.string.err_msg_email), true)
             return false
         }
-
         if(passwordText.text.isEmpty())
         {
             showErrorSnackBar(resources.getString(R.string.err_msg_password), true)
             return false
         }
-
         return true
-
     }
 
     private fun loginRegisteredUser() {
 
         if (validateLoginDetails()) {
 
-            // Get the text from editText and trim the space
             val email = emailText.text.toString().trim { it <= ' ' }
             val password = passwordText.text.toString().trim { it <= ' ' }
 
             // Log-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-
-                     if (task.isSuccessful)
-                     {
-                         FirestoreClass().getUserDetails(this@LoginActivity)
-                     }
-                     else
-                     {
+                    if (task.isSuccessful)
+                    {
+                        FirestoreClass().getUserDetails(this@LoginActivity)
+                    }
+                    else
+                    {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
-                     }
+                    }
                 }
         }
     }
 
     fun userLoggedInSuccess(user : User){
-
-        Log.i("First Name", user.firstName)
-        Log.i("Last Name", user.lastName)
-        Log.i("Email", user.email)
-
         val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
         intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
-
         startActivity(intent)
         finish()
     }

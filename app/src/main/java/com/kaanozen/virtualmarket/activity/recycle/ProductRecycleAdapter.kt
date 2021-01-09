@@ -15,6 +15,7 @@ import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.MainActivity
 import com.kaanozen.virtualmarket.activity.model.Product
+import com.kaanozen.virtualmarket.activity.utilies.Constants
 import io.grpc.Context
 import kotlinx.android.synthetic.main.activity_product_recycle_unit_view.view.*
 
@@ -54,10 +55,10 @@ class ProductRecycleAdapter:  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(product: Product){
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("product").child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child(Constants.IMAGE_STORAGE_PRODUCT_PATH).child(product.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
-                        .load(arr)
-                        .into(product_image)
+                    .load(arr)
+                    .into(product_image)
             }.addOnFailureListener { product_image.setImageResource(R.drawable.water)}
 
             product_title.text = product.name

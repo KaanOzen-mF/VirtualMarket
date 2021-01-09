@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.model.ProductCategory
+import com.kaanozen.virtualmarket.activity.utilies.Constants
 import kotlinx.android.synthetic.main.activity_category_recycle_unit_view.*
 import kotlinx.android.synthetic.main.activity_category_recycle_unit_view.view.*
 
@@ -51,12 +52,11 @@ class ProductCategoryRecycleAdapter() :  RecyclerView.Adapter<RecyclerView.ViewH
         fun bind(category: ProductCategory){
 
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("category").child(category.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child(Constants.IMAGE_STORAGE_CATEGORY_PATH).child(category.id + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
-                        .load(arr)
-                        .into(category_image)
+                    .load(arr)
+                    .into(category_image)
             }.addOnFailureListener { category_image.setImageResource(R.drawable.home_icon)}
-
 
             category_title.text = category.name
         }

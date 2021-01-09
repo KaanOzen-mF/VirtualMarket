@@ -14,6 +14,7 @@ import com.google.firebase.storage.ktx.storage
 import com.kaanozen.virtualmarket.R
 import com.kaanozen.virtualmarket.activity.firestore.FirestoreClass
 import com.kaanozen.virtualmarket.activity.model.Order
+import com.kaanozen.virtualmarket.activity.utilies.Constants
 import kotlinx.android.synthetic.main.activity_order_recycle_unit_view.view.*
 
 class OrderRecycleAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,13 +22,11 @@ class OrderRecycleAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: ArrayList<Order> = ArrayList()
     private lateinit var listener : OrderRecycleAdapter.OnItemClickListener
 
-    fun submitItems(orders : ArrayList<Order>)
-    {
+    fun submitItems(orders : ArrayList<Order>) {
         this.items = orders
     }
 
-    fun submitListener(listener_: OrderRecycleAdapter.OnItemClickListener)
-    {
+    fun submitListener(listener_: OrderRecycleAdapter.OnItemClickListener) {
         this.listener = listener_
     }
 
@@ -57,13 +56,12 @@ class OrderRecycleAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val order_quantity : TextView = itemView.order_quantity
         private val cancel_button : Button = itemView.ordercancelBut
 
-
         fun bind(order: Order){
             val ONE_MEGABYTE: Long = 1024 * 1024
-            Firebase.storage.reference.child("product").child(order.productID + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
+            Firebase.storage.reference.child(Constants.IMAGE_STORAGE_PRODUCT_PATH).child(order.productID + ".png").getBytes(ONE_MEGABYTE).addOnSuccessListener { arr ->
                 Glide.with(itemView)
-                        .load(arr)
-                        .into(order_image)
+                    .load(arr)
+                    .into(order_image)
             }.addOnFailureListener { order_image.setImageResource(R.drawable.water)}
 
             order_title.text = order.productName
@@ -80,8 +78,7 @@ class OrderRecycleAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    interface OnItemClickListener
-    {
+    interface OnItemClickListener {
         fun OnItemClick(position: Int, item : Order)
     }
 }

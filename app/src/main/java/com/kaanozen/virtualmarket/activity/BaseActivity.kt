@@ -23,7 +23,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         val snackBar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
-        
+
         if (errorMessage) {
             snackBarView.setBackgroundColor(
                 ContextCompat.getColor(
@@ -66,8 +66,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         return this.products
     }
 
-    override fun onClick(view: View?)
-    {
+    override fun onClick(view: View?) {
         when(view!!.id){
             R.id.home_bottom_image_view ->{
                 BaseActivity.depth = 0
@@ -76,9 +75,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
             R.id.user_bottom_logo_image_view ->{
-                val intent = Intent(this,UserProfileActivity::class.java)
-                startActivity(intent)
-                finish()
+                FirestoreClass().getUserDetails(this)
             }
             R.id.shopping_cart_image_view ->{
                 val intent = Intent(this,OrderListActivity::class.java)

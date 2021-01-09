@@ -39,7 +39,7 @@ class OrderListActivity : BaseActivity(), OrderRecycleAdapter.OnItemClickListene
         findViewById<ImageView>(R.id.shopping_cart_image_view).setOnClickListener(this)
     }
 
-    fun returnOrderList() : ArrayList<Order> {
+    private fun returnOrderList() : ArrayList<Order> {
 
         orders.clear()
 
