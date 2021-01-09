@@ -30,7 +30,7 @@
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/shopping_cart" />
+            app:srcCompat="@drawable/shopping_cart_red" />
 
         <ImageView
             android:id="@+id/user_bottom_logo_image_view"
