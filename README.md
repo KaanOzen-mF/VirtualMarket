@@ -18,7 +18,7 @@ Android Stuido: https://developer.android.com/studio
 
 ## How to run the application from version control
 
-### Project can be imported using GitHub link of the project. Get Project From Version Control allows cloning the project directly from GitHub
+#### Project can be imported using GitHub link of the project. Get Project From Version Control allows cloning the project directly from GitHub
 
 ![](readmeImages/github_readme_image0.png)
 
