@@ -16,15 +16,15 @@ Further details about Firebase : https://firebase.google.com/
 
 Android Stuido: https://developer.android.com/studio
 
-## How to run the application
-
-### In order to run the application, project files must be imported to Android Studio. After that an emulator is needed to simulate the application as if we it is running on a real Android Phone
+## How to run the application from version control
 
 ### Project can be imported using GitHub link of the project. Get Project From Version Control allows cloning the project directly from GitHub
 
-### Project Link https://github.com/KaanOzen-mF/VirtualMarket.git
-
 ![](readmeImages/github_readme_image0.png)
+
+### In Order To Run The Application Follow Steps From 9.1 to 11
+
+## How to run the application by downloading the project
 
 1. Android Stuido has to be installed https://developer.android.com/studio 
 
