@@ -38,5 +38,7 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image4.png)
 
+7. Wait for gradle to finish processing project files
+
 
 
