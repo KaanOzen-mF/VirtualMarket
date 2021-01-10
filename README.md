@@ -48,11 +48,11 @@ Android Stuido: https://developer.android.com/studio
 
 9. Click Create Virtual Device button
 
-  9.1 Select Phone Category
+9.1. Select Phone Category
 
-  9.2 Select one of the phones in list
+9.2. Select one of the phones in list
 
-  9.3 Click next
+9.3. Click next
 
 ![](readmeImages/github_readme_image7.png)
 
