@@ -18,9 +18,7 @@ Android Stuido: https://developer.android.com/studio
 
 ## How to run the application
 
-1. Android Stuido has to be installed
-
-https://developer.android.com/studio 
+1. Android Stuido has to be installed https://developer.android.com/studio 
 
 2. Download the project from the GitHub as a zip file
 
