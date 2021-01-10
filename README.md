@@ -34,9 +34,7 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image3.png)
 
-6. Find the extracted folder in step 4. Android Studio should see the folder as a project folder and show an android symbol right next to folder name 
-
-After selecting the project folder, click OK
+6. Find the extracted folder in step 4. Android Studio should see the folder as a project folder and show an android symbol right next to folder name. After selecting the project folder, click OK
 
 ![](readmeImages/github_readme_image4.png)
 
