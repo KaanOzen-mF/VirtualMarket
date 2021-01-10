@@ -28,6 +28,8 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image2.png)
 
+4. Extract the zip file and open Android Studio
+
 
 
 
