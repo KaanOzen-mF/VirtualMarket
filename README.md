@@ -16,15 +16,15 @@ Further details about Firebase : https://firebase.google.com/
 
 Android Stuido: https://developer.android.com/studio
 
-## In Order To Run The Application Follow Steps From 9.1 to 11
-
 ## How To Get This Project:
 
 #### Project can be imported using GitHub link of the project. Get Project From Version Control allows cloning the project directly from GitHub
 
 ![](readmeImages/github_readme_image0.png)
 
-## If GitHub option fails, steps below show how to import project manually
+## After cloning the project. Follow steps 7 to 11
+
+#### If GitHub option fails, steps below show how to import project manually
 
 1. Android Stuido has to be installed https://developer.android.com/studio 
 
