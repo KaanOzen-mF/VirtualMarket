@@ -54,7 +54,6 @@ class LoginActivity : BaseActivity() {
         if (validateLoginDetails()) { //If inputs are valid
 
             //Take information of the user
-
             val email = emailText.text.toString().trim { it <= ' ' }
             val password = passwordText.text.toString().trim { it <= ' ' }
 

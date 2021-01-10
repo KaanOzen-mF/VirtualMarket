@@ -1,5 +1,6 @@
 package com.kaanozen.virtualmarket.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -36,9 +37,16 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
                     .into(productImageView)
         }.addOnFailureListener { productImageView.setImageResource(R.drawable.mainfood)}
 
-        //Set the order quantity selector
-        numberpicker.maxValue = product.stock
-        numberpicker.minValue = 1
+        if(product.stock != 0) {
+            //Set the order quantity selector
+            numberpicker.maxValue = product.stock
+            numberpicker.minValue = 1
+        }
+        else {
+            orderBut.isEnabled = false
+            orderBut.text = "Ürün Stok Dışı"
+            numberpicker.isEnabled = false
+        }
 
         //Set views to product informations
         productNameView.text = product.name
@@ -54,7 +62,6 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
 
     //If something is clicked
     override fun onClick(view: View?) {
-
         //If clicked view is the order button, create the order
         if(view!!.id == orderBut.id)
         {
@@ -62,6 +69,10 @@ class ProductPageActivity : BaseActivity(),View.OnClickListener {
             FirestoreClass().addOrder(product,numberpicker.value,this)
             numberpicker.value = 1
             numberpicker.maxValue = product.stock
+            val intent = Intent(this, ProductPageActivity::class.java)
+            intent.putExtra("item", product)
+            startActivity(intent)
+            finish()
         }
         else //If clicked view is in the navigation bar, call the navigation bar handler in the BaseActivity
         {
