@@ -26,7 +26,7 @@ Android Stuido: https://developer.android.com/studio
 
 ## After cloning the project. Follow steps 7 to 11
 
-#### If GitHub option fails, steps below show how to import project manually
+## If GitHub option fails. Start from step 1
 
 1. Android Stuido has to be installed https://developer.android.com/studio 
 
