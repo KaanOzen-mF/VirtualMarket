@@ -60,7 +60,7 @@ Android Stuido: https://developer.android.com/studio
 
 9.1. Select Phone Category
 
-9.2. Select one of the phones in list
+9.2. Select one of the phones in the list **with Google Play icon**
 
 9.3. Click next
 
