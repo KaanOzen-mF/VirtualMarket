@@ -30,6 +30,9 @@ Android Stuido: https://developer.android.com/studio
 
 4. Extract the zip file and open Android Studio
 
+5. Select open and existing project option 
+
+![](readmeImages/github_readme_image3.png)
 
 
 
