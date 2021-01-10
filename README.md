@@ -59,3 +59,7 @@ Android Stuido: https://developer.android.com/studio
 10. Select R, Click next, Click finish button in the next dialog. After the phone emulator is created, close AVD Manager
 
 ![](readmeImages/github_readme_image8.png)
+
+11. Make sure that emulator is selected, then click the green run button to run the application
+
+![](readmeImages/github_readme_image9.png)
