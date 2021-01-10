@@ -6,7 +6,7 @@
 
 ## General Information
 
-This is a virtual market application written in Kotlin for Android operating system. This is our final project for CENG3011 Programming Languages Course.
+This is a virtual market application written in **Kotlin for Android operating system**. This is our final project for CENG3011 Programming Languages Course.
 
 **This application uses Google Firebase Database system for data storage**
 
