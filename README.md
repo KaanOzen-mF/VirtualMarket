@@ -12,6 +12,8 @@ This is a virtual market application written in **Kotlin for Android operating s
 
 **Android Stuido is used for development of this project**
 
+**STEPS 9.1 to 11 ARE VERY IMPORTANT TO RUN THE APPLICATION**
+
 Further details about Firebase : https://firebase.google.com/
 
 Android Stuido: https://developer.android.com/studio
