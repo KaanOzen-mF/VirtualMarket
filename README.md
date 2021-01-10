@@ -22,7 +22,7 @@ Android Stuido: https://developer.android.com/studio
 
 2. Download the project from the GitHub as a zip file
 
-[![Download Project Zip File](https://drive.google.com/file/d/12ZRXRuU4Qhn3mHMgIrr8xeYWlfbczINo/view?usp=sharing "Download Project Zip File")](https://drive.google.com/file/d/12ZRXRuU4Qhn3mHMgIrr8xeYWlfbczINo/view?usp=sharing "Download Project Zip File")
+[![](https://drive.google.com/file/d/12ZRXRuU4Qhn3mHMgIrr8xeYWlfbczINo/view?usp=sharing)](https://drive.google.com/file/d/12ZRXRuU4Qhn3mHMgIrr8xeYWlfbczINo/view?usp=sharing)
 
 
 
