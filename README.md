@@ -18,6 +18,8 @@ Android Stuido: https://developer.android.com/studio
 
 ## How to run the application
 
+###In order to run the application, project files must be imported to Android Studio. After that an emulator is needed to simulate the application as if we it is running on a real Android Phone
+
 1. Android Stuido has to be installed https://developer.android.com/studio 
 
 2. Download the project from the GitHub as a zip file
