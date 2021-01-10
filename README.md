@@ -40,6 +40,9 @@ Android Stuido: https://developer.android.com/studio
 
 7. **Wait for gradle to finish processing project files.** After that, select Android project perspective for better project control. Click on "Project" then select Android.
 
-
 ![](readmeImages/github_readme_image5.png)
+
+8. **In order to run the application, an emulator is required** To add an emulator phone to Android Studio, select AVD Manager (Android Virtual Device Manager) at right top corner
+
+![](readmeImages/github_readme_image6.png)
 
