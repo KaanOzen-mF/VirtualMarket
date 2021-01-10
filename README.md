@@ -46,7 +46,7 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image6.png)
 
-9. Click Create Virtual Device button
+9.1. Click Create Virtual Device button
 
 9.1. Select Phone Category
 
