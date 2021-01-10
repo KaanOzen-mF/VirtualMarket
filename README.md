@@ -56,3 +56,6 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image7.png)
 
+10. Select R, Click next, Click finish button in the next dialog
+
+![](readmeImages/github_readme_image8.png)
