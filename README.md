@@ -24,7 +24,9 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_1.png)
 
+3. Rename downloaded zip file to VirtualMarket
 
+![](readmeImages/github_readme_image2.png)
 
 
 
