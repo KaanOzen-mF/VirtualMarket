@@ -30,12 +30,13 @@ Android Stuido: https://developer.android.com/studio
 
 4. Extract the zip file and open Android Studio
 
-5. Select open and existing project option 
+5. Select open an existing project option 
 
 ![](readmeImages/github_readme_image3.png)
 
+6. Find the extracted folder in step 4. Android Studio should see the folder as a project folder and show an android symbol right next to folder name 
 
-
+![](readmeImages/github_readme_image4.png)
 
 
 
