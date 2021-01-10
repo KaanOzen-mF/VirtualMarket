@@ -38,7 +38,8 @@ Android Stuido: https://developer.android.com/studio
 
 ![](readmeImages/github_readme_image4.png)
 
-7. **Wait for gradle to finish processing project files.** After that, select Android project perspective for better project control
+7. **Wait for gradle to finish processing project files.** After that, select Android project perspective for better project control. Clicl on "Project" then select Android.
+
 
 ![](readmeImages/github_readme_image5.png)
 
